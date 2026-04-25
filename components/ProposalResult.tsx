@@ -46,18 +46,18 @@ export function ProposalResult({ text, onTextChange }: ProposalResultProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-700">생성된 제안서</h2>
+        <h2 className="text-sm font-semibold text-gray-700">Generated Proposal</h2>
         <button
           onClick={handleCopy}
           className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 min-h-[44px]"
-          aria-label="제안서 복사"
+          aria-label="Copy proposal"
         >
           {copyStatus === "copied" ? (
-            <span className="text-green-600">✓ 복사되었습니다</span>
+            <span className="text-green-600">✓ Copied!</span>
           ) : copyStatus === "error" ? (
-            <span className="text-red-500">복사 실패</span>
+            <span className="text-red-500">Failed</span>
           ) : (
-            <span>복사</span>
+            <span>Copy</span>
           )}
         </button>
       </div>
@@ -67,11 +67,11 @@ export function ProposalResult({ text, onTextChange }: ProposalResultProps) {
         onChange={handleChange}
         rows={20}
         className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm leading-relaxed text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
-        aria-label="제안서 편집"
+        aria-label="Edit proposal"
       />
 
       <p className="text-xs text-gray-400">
-        제안서를 직접 수정할 수 있습니다. 수정 내용은 자동으로 저장되지 않습니다.
+        You can edit the proposal directly. Changes are not saved automatically.
       </p>
     </div>
   );

@@ -11,10 +11,10 @@ export function LoginPrompt({ onDismiss }: LoginPromptProps) {
     <div className="rounded-xl border border-blue-100 bg-blue-50 p-4 flex flex-col gap-3">
       <div>
         <p className="text-sm font-semibold text-blue-900">
-          제안서를 저장하고 더 많이 생성하려면 로그인하세요
+          Sign in to save proposals and generate more
         </p>
         <p className="text-xs text-blue-700 mt-1">
-          로그인 후 매월 5회 무료 · 로고 및 회사 정보 자동 삽입
+          5 free proposals/month · Auto-insert your logo &amp; business info
         </p>
       </div>
       <div className="flex flex-col sm:flex-row gap-2">
@@ -24,7 +24,7 @@ export function LoginPrompt({ onDismiss }: LoginPromptProps) {
             onClick={onDismiss}
             className="text-xs text-blue-500 underline px-2 min-h-[44px]"
           >
-            나중에
+            Maybe later
           </button>
         )}
       </div>

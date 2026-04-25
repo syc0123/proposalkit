@@ -38,26 +38,26 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          업종 <span className="text-gray-400 text-xs">(선택)</span>
+          Industry <span className="text-gray-400 text-xs">(optional)</span>
         </label>
         <input
           type="text"
           value={industry}
           onChange={(e) => setIndustry(e.target.value)}
-          placeholder="예: 배관, 인테리어, 컨설팅"
+          placeholder="e.g. Plumbing, Interior Design, Consulting"
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px]"
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          고객명 <span className="text-red-500">*</span>
+          Client Name <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
-          placeholder="예: 홍길동 고객님"
+          placeholder="e.g. John Smith"
           required
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px]"
         />
@@ -65,14 +65,14 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          작업 내용 <span className="text-red-500">*</span>
+          Scope of Work <span className="text-red-500">*</span>
         </label>
         <textarea
           value={scope}
           onChange={(e) => {
             if (e.target.value.length <= MAX_CHARS) setScope(e.target.value);
           }}
-          placeholder="예: 욕실 배관 교체 및 누수 수리, 타일 주변 방수 처리 포함"
+          placeholder="e.g. Bathroom pipe replacement and leak repair, including waterproofing around tiles"
           rows={4}
           required
           className={`w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
@@ -84,19 +84,19 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
             isOverLimit ? "text-red-500 font-medium" : "text-gray-400"
           }`}
         >
-          {totalChars}/{MAX_CHARS}자
+          {totalChars}/{MAX_CHARS} chars
         </div>
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          예산 <span className="text-red-500">*</span>
+          Budget <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
-          placeholder="예: 50만원, 협의 가능"
+          placeholder="e.g. $500, negotiable"
           required
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px]"
         />
@@ -107,7 +107,7 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
         disabled={!isValid || isLoading}
         className="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]"
       >
-        {isLoading ? "생성 중..." : "제안서 생성하기"}
+        {isLoading ? "Generating..." : "Generate Proposal"}
       </button>
     </form>
   );

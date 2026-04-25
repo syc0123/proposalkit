@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProposalKit — AI 소상공인 제안서 생성기",
-  description: "업종·고객명·작업 내용 입력 → 30초 안에 전문 제안서 생성. 무료.",
+  title: "ProposalKit — Free AI Proposal Generator",
+  description: "Enter your industry, client name & scope — get a professional proposal in 30 seconds. Free.",
 };
 
 export default function RootLayout({

@@ -4,24 +4,24 @@ const GEMINI_API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
 function buildPrompt(input: ProposalInput): string {
-  const industry = input.industry?.trim() || "일반";
-  return `당신은 소상공인의 견적서/제안서 작성을 돕는 전문가입니다.
-업종 맥락에 맞는 전문 용어를 사용하되 고객이 이해하기 쉽게 작성하세요.
+  const industry = input.industry?.trim() || "General";
+  return `You are an expert proposal writer helping small business owners win clients.
+Use industry-appropriate terminology while keeping the proposal clear and easy for clients to understand.
 
-아래 정보를 바탕으로 전문 제안서를 작성해주세요:
-업종: ${industry}
-고객명: ${input.clientName}
-작업 내용: ${input.scope}
-예산: ${input.budget}
+Please write a professional business proposal based on the following information:
+Industry: ${industry}
+Client Name: ${input.clientName}
+Scope of Work: ${input.scope}
+Budget: ${input.budget}
 
-다음 구조로 작성하세요:
-1. 인사 및 소개
-2. 작업 범위 및 내용
-3. 예상 일정/단계
-4. 견적 및 비용 근거
-5. 마무리 및 연락처 안내
+Structure the proposal as follows:
+1. Introduction & Greeting
+2. Scope of Work & Deliverables
+3. Timeline & Milestones
+4. Pricing & Cost Breakdown
+5. Closing & Contact Information
 
-마크다운 형식으로 작성하세요.`;
+Write in Markdown format.`;
 }
 
 export class GeminiError extends Error {
@@ -63,7 +63,7 @@ export async function generateProposal(
       }),
     });
   } catch {
-    throw new GeminiError("잠시 후 다시 시도해 주세요.", 503);
+    throw new GeminiError("Please try again in a moment.", 503);
   }
 
   if (response.status === 429) {
@@ -74,15 +74,15 @@ export async function generateProposal(
       JSON.stringify(body).toLowerCase().includes("rate");
     throw new GeminiError(
       isQuota
-        ? "오늘 사용량이 초과됐습니다. 내일 다시 시도해 주세요."
-        : "잠시 후 다시 시도해 주세요.",
+        ? "Daily quota exceeded. Please try again tomorrow."
+        : "Please try again in a moment.",
       503,
       isQuota
     );
   }
 
   if (!response.ok) {
-    throw new GeminiError("잠시 후 다시 시도해 주세요.", 503);
+    throw new GeminiError("Please try again in a moment.", 503);
   }
 
   const data = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
@@ -90,7 +90,7 @@ export async function generateProposal(
     data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 
   if (!text) {
-    throw new GeminiError("제안서를 생성하지 못했습니다. 다시 시도해 주세요.", 503);
+    throw new GeminiError("Failed to generate proposal. Please try again.", 503);
   }
 
   return {

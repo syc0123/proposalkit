@@ -21,17 +21,16 @@ function validateInput(body: unknown): body is GenerateApiRequest {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse<GenerateApiResponse>> {
-  // Parse body
   let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "잘못된 요청 형식입니다." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request format." }, { status: 400 });
   }
 
   if (!validateInput(body)) {
     return NextResponse.json(
-      { error: "필수 항목(고객명, 작업 내용, 예산)을 모두 입력해 주세요." },
+      { error: "Please fill in all required fields: Client Name, Scope of Work, and Budget." },
       { status: 400 }
     );
   }
@@ -56,7 +55,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GenerateApiRe
     if (!rateLimitResult.allowed) {
       return NextResponse.json(
         {
-          error: "이번 달 무료 한도(5회)를 모두 사용했습니다.",
+          error: "You've used all 5 free proposals this month.",
           rateLimitRemaining: 0,
         },
         { status: 429 }
@@ -66,7 +65,6 @@ export async function POST(req: NextRequest): Promise<NextResponse<GenerateApiRe
   // @AX:NOTE: [AUTO] guest bypass is client-side only (sessionStorage) — server does not enforce
   // Guest users: no server-side rate limit (client sessionStorage handles 1-free)
 
-  // Generate proposal
   try {
     const proposal = await generateProposal({
       industry: typeof body.industry === "string" ? body.industry : undefined,
@@ -81,7 +79,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GenerateApiRe
       return NextResponse.json({ error: err.message }, { status: err.statusCode });
     }
     return NextResponse.json(
-      { error: "잠시 후 다시 시도해 주세요." },
+      { error: "Please try again in a moment." },
       { status: 503 }
     );
   }

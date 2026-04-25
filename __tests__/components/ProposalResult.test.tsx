@@ -5,14 +5,13 @@ import { fireEvent } from '@testing-library/react'
 import { ProposalResult } from '@/components/ProposalResult'
 
 describe('ProposalResult', () => {
-  const sampleProposal = '귀사의 웹 서비스 개발 제안서입니다.\n상세 내용이 여기 포함됩니다.'
+  const sampleProposal = '# Proposal for Acme Corp\n\nThank you for the opportunity.'
 
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('textarea에 제안서 텍스트를 렌더링해야 한다', () => {
-    // ProposalResult prop is `text`, not `proposal`
+  it('renders proposal text in textarea', () => {
     render(<ProposalResult text={sampleProposal} />)
 
     const textarea = screen.getByRole('textbox')
@@ -20,27 +19,24 @@ describe('ProposalResult', () => {
     expect((textarea as HTMLTextAreaElement).value).toBe(sampleProposal)
   })
 
-  it('textarea 내용을 편집할 수 있어야 한다', () => {
+  it('allows editing textarea content', () => {
     render(<ProposalResult text={sampleProposal} />)
 
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement
 
-    // Use fireEvent.change for reliable controlled textarea update
-    fireEvent.change(textarea, { target: { value: '수정된 제안서 내용' } })
+    fireEvent.change(textarea, { target: { value: 'Updated proposal content' } })
 
-    expect(textarea.value).toBe('수정된 제안서 내용')
+    expect(textarea.value).toBe('Updated proposal content')
   })
 
-  it('복사 버튼 클릭 시 navigator.clipboard.writeText를 호출해야 한다', async () => {
-    // userEvent.setup() stubs navigator.clipboard in the jsdom environment
+  it('calls navigator.clipboard.writeText on copy button click', async () => {
     const user = userEvent.setup()
 
-    // Spy AFTER userEvent.setup() has installed the clipboard stub
     const writeTextSpy = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue()
 
     render(<ProposalResult text={sampleProposal} />)
 
-    const copyButton = screen.getByRole('button', { name: /복사/i })
+    const copyButton = screen.getByRole('button', { name: /copy/i })
     await user.click(copyButton)
 
     expect(writeTextSpy).toHaveBeenCalledTimes(1)
@@ -49,15 +45,15 @@ describe('ProposalResult', () => {
     writeTextSpy.mockRestore()
   })
 
-  it('복사 후 "복사되었습니다" 토스트를 표시해야 한다', async () => {
+  it('shows "Copied!" toast after copy', async () => {
     const user = userEvent.setup()
     render(<ProposalResult text={sampleProposal} />)
 
-    const copyButton = screen.getByRole('button', { name: /복사/i })
+    const copyButton = screen.getByRole('button', { name: /copy/i })
     await user.click(copyButton)
 
     await waitFor(() => {
-      expect(screen.getByText(/복사되었습니다/)).toBeInTheDocument()
+      expect(screen.getByText(/Copied!/)).toBeInTheDocument()
     })
   })
 })

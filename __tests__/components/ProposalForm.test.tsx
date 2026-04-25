@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ProposalForm } from '@/components/ProposalForm'
 
-// ProposalInput type matching implementation
 interface ProposalInput {
   industry?: string
   clientName: string
@@ -18,64 +17,58 @@ describe('ProposalForm', () => {
     vi.clearAllMocks()
   })
 
-  it('4개의 입력 필드를 렌더링해야 한다 (industry 선택, 나머지 필수)', () => {
+  it('renders 4 input fields (industry optional, rest required)', () => {
     render(<ProposalForm onSubmit={mockOnSubmit} />)
 
-    // Use specific placeholders that are unique to each field
-    expect(screen.getByPlaceholderText('예: 홍길동 고객님')).toBeInTheDocument()   // 고객명
-    expect(screen.getByPlaceholderText(/욕실 배관 교체/)).toBeInTheDocument()      // 작업 내용 (textarea)
-    expect(screen.getByPlaceholderText('예: 50만원, 협의 가능')).toBeInTheDocument() // 예산
-    expect(screen.getByPlaceholderText('예: 배관, 인테리어, 컨설팅')).toBeInTheDocument() // 업종 (input)
+    expect(screen.getByPlaceholderText('e.g. John Smith')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/Bathroom pipe replacement/)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('e.g. $500, negotiable')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('e.g. Plumbing, Interior Design, Consulting')).toBeInTheDocument()
   })
 
-  it('글자 수 카운터를 표시해야 한다', () => {
+  it('displays character counter', () => {
     render(<ProposalForm onSubmit={mockOnSubmit} />)
 
-    // Counter renders as "0/500자" with spaces between spans
     expect(screen.getByText(/500/)).toBeInTheDocument()
   })
 
-  it('필수 필드가 비어 있을 때 제출 버튼이 비활성화되어야 한다', () => {
+  it('disables submit button when required fields are empty', () => {
     render(<ProposalForm onSubmit={mockOnSubmit} />)
 
-    const submitButton = screen.getByRole('button', { name: /생성|제출|submit/i })
+    const submitButton = screen.getByRole('button', { name: /generate|submit/i })
     expect(submitButton).toBeDisabled()
   })
 
-  it('입력 글자 수가 500자를 초과하면 추가 입력이 차단되어야 한다', () => {
+  it('blocks input beyond 500 characters', () => {
     render(<ProposalForm onSubmit={mockOnSubmit} />)
 
-    const scopeField = screen.getByPlaceholderText(/욕실 배관 교체/) as HTMLTextAreaElement
+    const scopeField = screen.getByPlaceholderText(/Bathroom pipe replacement/) as HTMLTextAreaElement
     const longText = 'a'.repeat(501)
 
-    // Use fireEvent.change to bypass slow userEvent.type for long strings
     fireEvent.change(scopeField, { target: { value: longText } })
 
-    // The onChange handler clamps at 500 chars: if value.length <= 500 setScope
-    // So the field should not contain more than 500 chars
     expect(scopeField.value.length).toBeLessThanOrEqual(500)
   })
 
-  it('필수 필드 입력 후 폼 제출 시 onSubmit을 올바른 ProposalInput과 함께 호출해야 한다', async () => {
+  it('calls onSubmit with correct ProposalInput after filling required fields', async () => {
     const user = userEvent.setup()
     render(<ProposalForm onSubmit={mockOnSubmit} />)
 
-    const clientNameField = screen.getByPlaceholderText('예: 홍길동 고객님')
-    const scopeField = screen.getByPlaceholderText(/욕실 배관 교체/)
-    const budgetField = screen.getByPlaceholderText('예: 50만원, 협의 가능')
+    const clientNameField = screen.getByPlaceholderText('e.g. John Smith')
+    const scopeField = screen.getByPlaceholderText(/Bathroom pipe replacement/)
+    const budgetField = screen.getByPlaceholderText('e.g. $500, negotiable')
 
-    // Use fireEvent.change for reliable controlled input update
-    fireEvent.change(clientNameField, { target: { value: '(주)테스트' } })
-    fireEvent.change(scopeField, { target: { value: '웹 서비스 개발' } })
-    fireEvent.change(budgetField, { target: { value: '5천만원' } })
+    fireEvent.change(clientNameField, { target: { value: 'Acme Corp' } })
+    fireEvent.change(scopeField, { target: { value: 'Website redesign' } })
+    fireEvent.change(budgetField, { target: { value: '$5,000' } })
 
-    const submitButton = screen.getByRole('button', { name: /생성|제출|submit/i })
+    const submitButton = screen.getByRole('button', { name: /generate|submit/i })
     await user.click(submitButton)
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1)
     const submittedInput: ProposalInput = mockOnSubmit.mock.calls[0][0]
-    expect(submittedInput.clientName).toBe('(주)테스트')
-    expect(submittedInput.scope).toBe('웹 서비스 개발')
-    expect(submittedInput.budget).toBe('5천만원')
+    expect(submittedInput.clientName).toBe('Acme Corp')
+    expect(submittedInput.scope).toBe('Website redesign')
+    expect(submittedInput.budget).toBe('$5,000')
   })
 })

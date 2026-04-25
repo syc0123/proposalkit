@@ -39,7 +39,7 @@ export default function HomePage() {
       }
 
       if (!res.ok || !data.proposal) {
-        setError(data.error ?? "제안서 생성에 실패했습니다. 다시 시도해 주세요.");
+        setError(data.error ?? "Failed to generate proposal. Please try again.");
         return;
       }
 
@@ -51,7 +51,7 @@ export default function HomePage() {
         setGuestUsed(true);
       }
     } catch {
-      setError("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+      setError("Network error. Please try again in a moment.");
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +69,7 @@ export default function HomePage() {
             ProposalKit
           </h1>
           <p className="mt-2 text-sm text-gray-500 sm:text-base">
-            업종·고객명·작업 내용을 입력하면 30초 안에 전문 제안서를 만들어 드립니다
+            Enter your industry, client & scope — get a professional proposal in 30 seconds.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className={`grid gap-6 ${proposal ? "sm:grid-cols-2" : ""}`}>
           {/* Form column */}
           <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-sm font-semibold text-gray-700">제안서 정보 입력</h2>
+            <h2 className="mb-4 text-sm font-semibold text-gray-700">Proposal Details</h2>
             {isBlocked ? (
               <LoginPrompt />
             ) : (

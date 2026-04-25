@@ -21,7 +21,7 @@ export default async function DashboardPage() {
     // KV unavailable in local dev — default to max
   }
 
-  const displayName = session.user.name ?? session.user.email ?? "사용자";
+  const displayName = session.user.name ?? session.user.email ?? "User";
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -29,14 +29,14 @@ export default async function DashboardPage() {
         <div className="mb-6 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-xl font-bold text-gray-900">
-              안녕하세요, {displayName}님
+              Welcome, {displayName}
             </h1>
             <p className="mt-0.5 text-sm text-gray-500">
-              이번 달 남은 무료 생성:{" "}
-              <span className="font-semibold text-blue-600">{remaining}회</span>
+              Free proposals this month:{" "}
+              <span className="font-semibold text-blue-600">{remaining} remaining</span>
             </p>
           </div>
-          <p className="text-xs text-gray-400">매월 1일 초기화</p>
+          <p className="text-xs text-gray-400">Resets on the 1st of each month</p>
         </div>
 
         <DashboardClient />
