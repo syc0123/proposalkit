@@ -1,6 +1,6 @@
 # SPEC-MVP-001: ProposalKit Sprint 1 — 즉시 생성·인라인 편집·로그인·Rate limit·반응형
 
-**Status**: draft
+**Status**: implemented
 **Created**: 2026-04-25
 **Domain**: MVP
 **Sprint**: 1
@@ -139,3 +139,12 @@ wrangler.toml (or pages config)  — Cloudflare KV 바인딩
 
 - 브레인스톰: `.autopus/brainstorms/trio-forge/` (브리프·PRD)
 - 차기 SPEC: SPEC-MVP-002 (Sprint 2 — R6, R7, R8 예정)
+
+
+## 구현 완료
+
+- 구현 커밋: d974fc2
+- 구현일: 2026-04-25
+- 테스트: 35/35 pass
+- 보안 감사: PASS (S-01, S-05, S-06 해결)
+- 미완료(Sprint 2): S-02 게스트 서버 rate limit, S-03 프롬프트 인젝션 펜싱, S-08 CSRF 체크
