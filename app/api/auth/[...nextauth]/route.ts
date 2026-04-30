@@ -3,15 +3,11 @@ export const runtime = "edge";
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
-// @AX:NOTE: [AUTO] auth.ts의 static init은 모듈 로드 시점에 process.env가 undefined일 수 있음
-// getRequestContext().env로 요청 시점에 Cloudflare 시크릿을 직접 읽어 Google 프로바이더 초기화
-
 async function getCloudflareEnv(): Promise<Record<string, string | undefined>> {
   try {
     const { getRequestContext } = await import("@cloudflare/next-on-pages");
     return getRequestContext().env as Record<string, string | undefined>;
   } catch {
-    // local dev — fall back to process.env
     return process.env as Record<string, string | undefined>;
   }
 }
@@ -43,6 +39,15 @@ function buildHandlers(env: Record<string, string | undefined>) {
     },
     pages: {
       signIn: "/",
+    },
+    // @AX:NOTE: debug mode — remove after auth is fixed
+    logger: {
+      error(err) {
+        console.error("[NextAuth Error]", err.name, err.message, (err as Error).stack ?? "");
+      },
+      warn(code) {
+        console.warn("[NextAuth Warn]", code);
+      },
     },
   });
   return handlers;
