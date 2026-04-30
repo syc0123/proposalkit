@@ -131,6 +131,19 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
             </svg>
           </span>
           <span className="logo-word">ProposalKit</span>
+          <span style={{
+            fontSize: 10,
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+            color: "#2563EB",
+            background: "#EFF6FF",
+            border: "1px solid #BFDBFE",
+            borderRadius: 4,
+            padding: "1px 5px",
+            marginLeft: 4,
+            verticalAlign: "middle",
+            lineHeight: "16px",
+          }}>beta</span>
         </Link>
         <nav className="nav-links">
           <Link href="/about">About</Link>
