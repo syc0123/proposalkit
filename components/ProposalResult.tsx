@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import { signIn } from "next-auth/react";
+import { downloadProposalPDF } from "@/components/ProposalPDF";
 
 interface ProposalResultProps {
   text: string | null;
@@ -14,6 +15,7 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
   const [editedText, setEditedText] = useState(text ?? "");
   const [isEditing, setIsEditing] = useState(false);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">("idle");
+  const [isPDFLoading, setIsPDFLoading] = useState(false);
 
   const displayText = editedText || text || "";
   const wordCount = displayText.split(/\s+/).filter(Boolean).length;
@@ -42,6 +44,15 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
     }
   }, [displayText]);
 
+  const handleDownloadPDF = useCallback(async () => {
+    setIsPDFLoading(true);
+    try {
+      await downloadProposalPDF(displayText);
+    } finally {
+      setIsPDFLoading(false);
+    }
+  }, [displayText]);
+
   return (
     <div className={`result-card${isEmpty ? " result-empty" : ""}`}>
       <div className="card-head">
@@ -67,10 +78,11 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
               <button
                 className="btn btn-ghost btn-sm"
                 type="button"
-                onClick={() => window.print()}
+                onClick={handleDownloadPDF}
+                disabled={isPDFLoading}
                 aria-label="Download PDF"
               >
-                ↓ PDF
+                {isPDFLoading ? "Preparing…" : "↓ PDF"}
               </button>
             )}
           </div>
