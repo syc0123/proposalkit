@@ -26,7 +26,10 @@ jobs:
         run: npx @cloudflare/next-on-pages
 
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy .vercel/output/static --project-name proposalkit --commit-dirty=true
+        # --commit-message overrides the git commit message sent to CF Pages API.
+        # CF Pages (error 8000111) rejects messages with <> angle brackets or multi-line text.
+        # Use SHA so deployment is traceable without special characters.
+        run: npx wrangler pages deploy .vercel/output/static --project-name proposalkit --commit-dirty=true --commit-message "${{ github.sha }}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: 2a6ad10d2274ada613efaae4a4d9f556
