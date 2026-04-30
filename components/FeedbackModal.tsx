@@ -16,13 +16,13 @@ const CATEGORIES = [
 
 const PLACEHOLDERS: Record<string, string> = {
   "Bug Report":
-    "사용 중 발생한 오류나 이상한 동작을 알려주세요.\n예) '생성 버튼을 눌렀는데 아무 반응이 없어요' / 'PDF 다운로드가 안 돼요'",
+    "Describe the issue or unexpected behavior you encountered.\ne.g. 'The generate button does nothing when I click it' / 'PDF download isn't working'",
   "Feature Request":
-    "추가됐으면 하는 기능이나 개선 아이디어를 알려주세요.\n예) '생성된 제안서를 저장해서 다시 볼 수 있으면 좋겠어요'",
+    "Share a feature idea or improvement you'd like to see.\ne.g. 'It would be great to save proposals and revisit them later'",
   "General Feedback":
-    "서비스를 사용하면서 느낀 점이나 바뀌었으면 하는 내용을 자유롭게 적어주세요.\n예) '제안서 톤이 너무 딱딱한 것 같아요'",
+    "Tell us what you think — what you liked, what felt off, or what you'd change.\ne.g. 'The proposal tone feels a bit too formal'",
   "Other":
-    "그 외 궁금한 점이나 하고 싶은 말을 자유롭게 적어주세요.",
+    "Anything else on your mind — questions, thoughts, or just a hello.",
 };
 
 export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
