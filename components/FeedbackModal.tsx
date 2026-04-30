@@ -14,6 +14,17 @@ const CATEGORIES = [
   "Other",
 ] as const;
 
+const PLACEHOLDERS: Record<string, string> = {
+  "Bug Report":
+    "사용 중 발생한 오류나 이상한 동작을 알려주세요.\n예) '생성 버튼을 눌렀는데 아무 반응이 없어요' / 'PDF 다운로드가 안 돼요'",
+  "Feature Request":
+    "추가됐으면 하는 기능이나 개선 아이디어를 알려주세요.\n예) '생성된 제안서를 저장해서 다시 볼 수 있으면 좋겠어요'",
+  "General Feedback":
+    "서비스를 사용하면서 느낀 점이나 바뀌었으면 하는 내용을 자유롭게 적어주세요.\n예) '제안서 톤이 너무 딱딱한 것 같아요'",
+  "Other":
+    "그 외 궁금한 점이나 하고 싶은 말을 자유롭게 적어주세요.",
+};
+
 export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
   const [category, setCategory] = useState<string>("General Feedback");
   const [message, setMessage] = useState("");
@@ -126,7 +137,7 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="What's on your mind? Be as specific as you like."
+                placeholder={PLACEHOLDERS[category] ?? "내용을 입력해주세요."}
                 required
                 maxLength={1000}
                 rows={4}
