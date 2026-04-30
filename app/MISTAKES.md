@@ -23,3 +23,13 @@
 3. `<a href>` → `<button onClick={() => signIn("google", { callbackUrl })}>`로 교체 (next-auth/react `signIn()`은 CSRF fetch → POST 흐름을 자동 처리)
 
 **교훈**: NextAuth v5에서 OAuth는 반드시 `signIn()` 클라이언트 함수를 통해 POST로 시작해야 함 — GET으로 provider 직접 호출은 지원 안 됨.
+
+### 2026-04-30 — RESEND_API_KEY가 edge runtime에서 undefined
+
+**증상**: 피드백 전송 시 Resend 이메일이 도착하지 않음. Resend 대시보드에 "No sent emails yet".
+
+**원인**: `process.env.RESEND_API_KEY`를 사용했는데 Cloudflare edge runtime에서는 `process.env`가 동작하지 않음. `emailStatus: "no_key"` 응답으로 확인.
+
+**해결**: KV 바인딩과 동일하게 `getRequestContext().env["RESEND_API_KEY"]`로 접근. 로컬 dev는 catch 블록에서 `process.env` 폴백 유지.
+
+**교훈**: Cloudflare edge runtime에서 환경변수는 반드시 `getRequestContext().env`로 접근해야 함 — `process.env`는 동작하지 않음.
