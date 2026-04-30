@@ -8,6 +8,7 @@ import { ProposalForm } from "@/components/ProposalForm";
 import { ProposalResult } from "@/components/ProposalResult";
 import { UpgradeModal } from "@/components/UpgradeModal";
 import type { ProposalInput, ProposalOutput, GenerateApiResponse } from "@/types/proposal";
+import { saveProposal, loadProposal } from "@/lib/proposal-storage";
 
 // @AX:NOTE: [AUTO] sessionStorage key for guest 1-free tracking — cleared on tab close
 const GUEST_USED_KEY = "pk:guest_used";
@@ -52,7 +53,10 @@ const CHIPS = [
 ];
 
 export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeClientProps) {
-  const [proposal, setProposal] = useState<ProposalOutput | null>(null);
+  const [proposal, setProposal] = useState<ProposalOutput | null>(() => {
+    if (typeof window === "undefined") return null;
+    return loadProposal();
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Decremented client-side after each successful generation
@@ -87,6 +91,7 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
       }
 
       setProposal(data.proposal);
+      saveProposal(data.proposal);
 
       if (user) {
         // Decrement displayed count for authenticated non-admin users
