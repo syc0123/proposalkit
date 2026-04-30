@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import { generateProposal, GeminiError } from "@/lib/gemini";
 import { checkAndIncrement } from "@/lib/rate-limit";
 import { getCurrentUserId } from "@/lib/auth-helpers";
+import { isAdminEmail } from "@/lib/admin";
+import { auth } from "@/auth";
 import type { GenerateApiRequest, GenerateApiResponse } from "@/types/proposal";
 
 export const runtime = "edge";
@@ -35,10 +37,12 @@ export async function POST(req: NextRequest): Promise<NextResponse<GenerateApiRe
     );
   }
 
-  const userId = await getCurrentUserId();
+  const session = await auth();
+  const userId = await getCurrentUserId(session);
+  const adminUser = isAdminEmail(session?.user?.email);
 
-  // Rate limit check — only for authenticated users
-  if (userId) {
+  // Rate limit check — only for authenticated non-admin users
+  if (userId && !adminUser) {
     // Access KV binding via @cloudflare/next-on-pages
     let kv: Parameters<typeof checkAndIncrement>[1] | undefined;
     // @AX:WARN: [AUTO] dynamic import fails outside Cloudflare Workers runtime — in-memory fallback

@@ -3,6 +3,7 @@ export const runtime = "edge";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getRemainingCount } from "@/lib/rate-limit";
+import { isAdminEmail } from "@/lib/admin";
 import { DashboardClient } from "@/app/dashboard/DashboardClient";
 
 export default async function DashboardPage() {
@@ -13,14 +14,18 @@ export default async function DashboardPage() {
   }
 
   const userId = session.user.id ?? session.user.email ?? "";
+  const adminUser = isAdminEmail(session.user.email);
+
   // @AX:NOTE: [AUTO] default 5 is optimistic — shown only when KV is unreachable (local dev)
   let remaining = 5;
 
   // Try KV lookup — falls back to 5 if unavailable (local dev)
-  try {
-    remaining = await getRemainingCount(userId);
-  } catch {
-    // KV unavailable in local dev — default to max
+  if (!adminUser) {
+    try {
+      remaining = await getRemainingCount(userId);
+    } catch {
+      // KV unavailable in local dev — default to max
+    }
   }
 
   const displayName = session.user.name ?? session.user.email ?? "User";
@@ -35,7 +40,9 @@ export default async function DashboardPage() {
             </h1>
             <p className="mt-0.5 text-sm text-gray-500">
               Free proposals this month:{" "}
-              <span className="font-semibold text-blue-600">{remaining} remaining</span>
+              <span className="font-semibold text-blue-600">
+                {adminUser ? "Unlimited ∞" : `${remaining} remaining`}
+              </span>
             </p>
           </div>
           <p className="text-xs text-gray-400">Resets on the 1st of each month</p>
