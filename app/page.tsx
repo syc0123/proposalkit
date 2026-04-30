@@ -1,6 +1,7 @@
 export const runtime = "edge";
 
 import { auth } from "@/auth";
+import type { Session } from "next-auth";
 import { getRemainingCount } from "@/lib/rate-limit";
 import { isAdminEmail } from "@/lib/admin";
 import { HomeClient } from "@/app/HomeClient";
@@ -8,7 +9,7 @@ import { HomeClient } from "@/app/HomeClient";
 export default async function HomePage() {
   // @AX:WARN: auth() throws MissingSecret in production if AUTH_SECRET is not set in CF Pages env vars.
   // Wrap in try-catch so the page degrades gracefully (unauthenticated UI) instead of returning 500.
-  let session: Awaited<ReturnType<typeof auth>> = null;
+  let session: Session | null = null;
   try {
     session = await auth();
   } catch {
