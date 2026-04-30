@@ -30,12 +30,12 @@ const HOW_STEPS = [
 ];
 
 const CHIPS = [
-  { icon: "🔧", label: "Plumbers & contractors" },
-  { icon: "🎨", label: "Interior designers" },
-  { icon: "📊", label: "Marketing consultants" },
-  { icon: "💻", label: "Web developers" },
-  { icon: "🌿", label: "Landscapers" },
-  { icon: "📋", label: "Accountants" },
+  { icon: "🔧", label: "Plumbers & contractors", href: "/for/contractors" },
+  { icon: "🎨", label: "Interior designers", href: "/for/designers" },
+  { icon: "📊", label: "Marketing consultants", href: "/for/agencies" },
+  { icon: "💻", label: "Web developers", href: "/for/designers" },
+  { icon: "🌿", label: "Landscapers", href: "/for/contractors" },
+  { icon: "📋", label: "Accountants", href: "/for/consultants" },
 ];
 
 export default function HomePage() {
@@ -238,12 +238,12 @@ export default function HomePage() {
           <h2>Solo operators and small teams.</h2>
         </div>
         <div className="chips">
-          {CHIPS.map(({ icon, label }) => (
-            <div key={label} className="chip">
+          {CHIPS.map(({ icon, label, href }) => (
+            <Link key={label} href={href} className="chip">
               <span className="chip-bar" />
               <span className="chip-icon">{icon}</span>
               <span className="chip-label">{label}</span>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
