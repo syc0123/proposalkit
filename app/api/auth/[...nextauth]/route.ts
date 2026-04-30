@@ -5,7 +5,9 @@ import Google from "next-auth/providers/google";
 import { NextRequest } from "next/server";
 
 // @AX:NOTE: @cloudflare/next-on-pages passes plain Request (no nextUrl)
-// NextAuth v5 requires NextRequest.nextUrl — wrap before passing to handler
+// NextAuth v5 App Router handlers need:
+//  1. NextRequest (with .nextUrl) — wrapping plain Request
+//  2. Route context (ctx) — contains params.nextauth for action parsing
 
 async function getCloudflareEnv(): Promise<Record<string, string | undefined>> {
   try {
@@ -58,14 +60,20 @@ function toNextRequest(req: Request): NextRequest {
   });
 }
 
-export async function GET(req: Request): Promise<Response> {
+// Next.js 15 App Router: ctx.params is a Promise<{ nextauth: string[] }>
+// NextAuth v5 beta types only expose 1-arg handler, but runtime needs ctx
+// for params.nextauth action parsing — cast to accept 2 args.
+type HandlerFn = (req: NextRequest, ctx?: unknown) => Promise<Response>;
+type RouteContext = { params: Promise<{ nextauth: string[] }> };
+
+export async function GET(req: Request, ctx: RouteContext): Promise<Response> {
   const env = await getCloudflareEnv();
   const handlers = buildHandlers(env);
-  return handlers.GET(toNextRequest(req));
+  return (handlers.GET as HandlerFn)(toNextRequest(req), ctx);
 }
 
-export async function POST(req: Request): Promise<Response> {
+export async function POST(req: Request, ctx: RouteContext): Promise<Response> {
   const env = await getCloudflareEnv();
   const handlers = buildHandlers(env);
-  return handlers.POST(toNextRequest(req));
+  return (handlers.POST as HandlerFn)(toNextRequest(req), ctx);
 }
