@@ -1,8 +1,10 @@
 export interface ProposalInput {
   industry?: string;
   clientName: string;
+  yourName?: string;
   scope: string;
   budget: string;
+  timeline?: string;
 }
 
 export interface ProposalOutput {

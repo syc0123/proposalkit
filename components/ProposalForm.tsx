@@ -12,9 +12,11 @@ interface ProposalFormProps {
 
 export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps) {
   const [industry, setIndustry] = useState("");
+  const [yourName, setYourName] = useState("");
   const [clientName, setClientName] = useState("");
   const [scope, setScope] = useState("");
   const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
 
   const totalChars = scope.length;
   const isOverLimit = totalChars > MAX_CHARS;
@@ -27,11 +29,13 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
       onSubmit({
         industry: industry.trim() || undefined,
         clientName: clientName.trim(),
+        yourName: yourName.trim() || undefined,
         scope: scope.trim(),
         budget: budget.trim(),
+        timeline: timeline.trim() || undefined,
       });
     },
-    [industry, clientName, scope, budget, isValid, isLoading, onSubmit]
+    [industry, yourName, clientName, scope, budget, timeline, isValid, isLoading, onSubmit]
   );
 
   return (
@@ -46,6 +50,19 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
           value={industry}
           onChange={(e) => setIndustry(e.target.value)}
           placeholder="e.g. Plumbing, Interior Design, Consulting"
+        />
+      </label>
+
+      <label className="field">
+        <div className="field-row">
+          <span className="field-label">Your Name / Business</span>
+          <span className="field-opt">optional</span>
+        </div>
+        <input
+          type="text"
+          value={yourName}
+          onChange={(e) => setYourName(e.target.value)}
+          placeholder="e.g. John's Plumbing, Acme Design Studio"
         />
       </label>
 
@@ -101,6 +118,19 @@ export function ProposalForm({ onSubmit, isLoading = false }: ProposalFormProps)
           onChange={(e) => setBudget(e.target.value)}
           placeholder="e.g. $500, negotiable"
           required
+        />
+      </label>
+
+      <label className="field">
+        <div className="field-row">
+          <span className="field-label">Project Timeline</span>
+          <span className="field-opt">optional</span>
+        </div>
+        <input
+          type="text"
+          value={timeline}
+          onChange={(e) => setTimeline(e.target.value)}
+          placeholder="e.g. 3 weeks, 2 months, ASAP"
         />
       </label>
 

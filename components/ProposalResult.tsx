@@ -62,6 +62,16 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
             >
               {copyStatus === "copied" ? "✓ Copied" : copyStatus === "error" ? "Failed" : "Copy"}
             </button>
+            {!isEditing && (
+              <button
+                className="btn btn-ghost btn-sm"
+                type="button"
+                onClick={() => window.print()}
+                aria-label="Download PDF"
+              >
+                ↓ PDF
+              </button>
+            )}
           </div>
         )}
       </div>

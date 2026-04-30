@@ -10,18 +10,23 @@ Use industry-appropriate terminology while keeping the proposal clear and easy f
 
 Please write a professional business proposal based on the following information:
 Industry: ${industry}
+Prepared by: ${input.yourName?.trim() || "Not specified"}
 Client Name: ${input.clientName}
 Scope of Work: ${input.scope}
 Budget: ${input.budget}
+Timeline: ${input.timeline?.trim() || "To be discussed"}
 
 Structure the proposal as follows:
-1. Introduction & Greeting
-2. Scope of Work & Deliverables
-3. Timeline & Milestones
-4. Pricing & Cost Breakdown
-5. Closing & Contact Information
+1. Executive Summary
+2. Problem Statement & Client Needs
+3. Proposed Solution & Scope of Work
+4. Timeline & Milestones
+5. Investment (Pricing & Cost Breakdown)
+6. Why Choose Us
+7. Next Steps & Call to Action
 
-Write in Markdown format.`;
+Write in Markdown format. Use professional American business English.
+If "Prepared by" is specified, include it in the header/closing.`;
 }
 
 export class GeminiError extends Error {

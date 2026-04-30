@@ -980,3 +980,52 @@ h1, h2, h3, h4 {
   .how-num { margin-bottom: 10px; }
   .section { margin-top: 56px; }
 }
+
+@media print {
+  /* Hide non-content elements */
+  .nav,
+  .hero,
+  .form-card,
+  .section,
+  .footer,
+  .card-head-actions,
+  .result-foot,
+  .signin-banner,
+  .result-empty,
+  .card-tag { display: none !important; }
+
+  /* Reset background and layout */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+  .page { padding: 0 !important; max-width: 100% !important; }
+  .generator { margin-top: 0 !important; }
+  .gen-grid { display: block !important; }
+
+  /* Result card full width */
+  .result-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .result-rendered {
+    border: none !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Markdown prose print optimization */
+  .md-prose { font-size: 11pt; line-height: 1.6; }
+  .md-prose h1 { font-size: 18pt; margin: 0 0 12pt; }
+  .md-prose h2 { font-size: 14pt; margin: 16pt 0 6pt; page-break-after: avoid; }
+  .md-prose h3 { font-size: 12pt; margin: 12pt 0 4pt; page-break-after: avoid; }
+  .md-prose p { margin: 0 0 8pt; orphans: 3; widows: 3; }
+  .md-prose ul { margin: 4pt 0 10pt; }
+
+  /* Keep card header title */
+  .card-head { margin-bottom: 16pt; }
+  .card-head h3 { font-size: 20pt; font-weight: 700; }
+}
