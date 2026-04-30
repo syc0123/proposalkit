@@ -18,7 +18,7 @@ export function LoginPrompt({ onDismiss }: LoginPromptProps) {
         </p>
       </div>
       <div className="flex flex-col sm:flex-row gap-2">
-        <GoogleSignInButton callbackUrl="/dashboard" className="flex-1" />
+        <GoogleSignInButton callbackUrl="/" className="flex-1" />
         {onDismiss && (
           <button
             onClick={onDismiss}

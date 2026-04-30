@@ -9,7 +9,7 @@ interface GoogleSignInButtonProps {
 }
 
 export function GoogleSignInButton({
-  callbackUrl = "/dashboard",
+  callbackUrl = "/",
   className = "",
   children,
 }: GoogleSignInButtonProps) {
