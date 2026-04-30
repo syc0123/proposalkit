@@ -1,10 +1,8 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
-// Fail fast if auth env vars are missing
-if (!process.env.AUTH_SECRET) {
-  throw new Error("AUTH_SECRET environment variable is required");
-}
+// AUTH_SECRET is validated at runtime by NextAuth — no top-level throw
+// (top-level throws break Next.js static build phase)
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
