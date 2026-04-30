@@ -78,8 +78,8 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
           aria-label="Edit proposal"
         />
       ) : (
-        <div className="result-rendered">
-          <ReactMarkdown className="md-prose">{displayText}</ReactMarkdown>
+        <div className="result-rendered md-prose">
+          <ReactMarkdown>{displayText}</ReactMarkdown>
         </div>
       )}
 
