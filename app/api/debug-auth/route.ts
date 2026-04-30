@@ -9,7 +9,7 @@ function toNextRequest(req: Request): NextRequest {
     method: req.method,
     headers: req.headers,
     body: req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
-    // @ts-expect-error duplex required for streaming body
+    // duplex required for streaming body
     duplex: "half",
   });
 }
