@@ -7,6 +7,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { ProposalForm } from "@/components/ProposalForm";
 import { ProposalResult } from "@/components/ProposalResult";
 import { UpgradeModal } from "@/components/UpgradeModal";
+import { FeedbackModal } from "@/components/FeedbackModal";
 import type { ProposalInput, ProposalOutput, GenerateApiResponse } from "@/types/proposal";
 import { saveProposal, loadProposal } from "@/lib/proposal-storage";
 
@@ -66,6 +67,7 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
     return sessionStorage.getItem(GUEST_USED_KEY) === "1";
   });
   const [showUpgrade, setShowUpgrade] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
 
   async function handleGenerate(input: ProposalInput) {
     setIsLoading(true);
@@ -335,6 +337,52 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
         </footer>
 
         <UpgradeModal isOpen={showUpgrade} onClose={() => setShowUpgrade(false)} />
+
+        {/* Floating feedback button */}
+        <button
+          onClick={() => setShowFeedback(true)}
+          aria-label="Share feedback"
+          style={{
+            position: "fixed",
+            bottom: 24,
+            right: 24,
+            zIndex: 150,
+            background: "var(--surface)",
+            color: "var(--ink-600)",
+            border: "1px solid var(--border)",
+            borderRadius: 999,
+            padding: "9px 16px",
+            fontSize: 13,
+            fontWeight: 500,
+            cursor: "pointer",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            fontFamily: "inherit",
+            transition: "box-shadow .15s ease, transform .15s ease",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 14px rgba(0,0,0,0.12)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform = "";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+          }}
+        >
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+            <path
+              d="M14 2H2a1 1 0 00-1 1v8a1 1 0 001 1h3l3 2 3-2h3a1 1 0 001-1V3a1 1 0 00-1-1z"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Feedback
+        </button>
+
+        <FeedbackModal isOpen={showFeedback} onClose={() => setShowFeedback(false)} />
       </div>
     </>
   );
