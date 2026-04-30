@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getRemainingCount } from "@/lib/rate-limit";
