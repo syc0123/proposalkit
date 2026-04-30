@@ -93,12 +93,17 @@ export async function generateProposal(
   }
 
   const data = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
-  const text: string =
+  const rawText: string =
     data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 
-  if (!text) {
+  if (!rawText) {
     throw new GeminiError("Failed to generate proposal. Please try again.", 503);
   }
+
+  // @AX:NOTE: [AUTO] strip markdown code fence wrapper — Gemini occasionally wraps output in
+  // ```markdown ... ``` which causes react-markdown to render raw monospace text instead of HTML
+  const codeFenceMatch = rawText.match(/^```(?:\w+)?\n([\s\S]*?)\n```\s*$/);
+  const text = codeFenceMatch ? codeFenceMatch[1] : rawText;
 
   return {
     text,

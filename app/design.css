@@ -300,6 +300,10 @@ h1, h2, h3, h4 {
   gap: 20px;
   align-items: stretch;
 }
+/* min-width: 0 prevents grid children from overflowing their column track */
+.gen-grid > * {
+  min-width: 0;
+}
 
 .form-card, .result-card {
   background: var(--surface);
@@ -465,6 +469,7 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-sm);
   padding: 20px 22px;
   background: var(--surface-2);
+  overflow-x: hidden;
   overflow-y: auto;
   max-height: 560px;
 }
@@ -472,6 +477,8 @@ h1, h2, h3, h4 {
   color: var(--ink-700);
   font-size: 14px;
   line-height: 1.65;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .md-prose h1 {
   font-size: 20px;
@@ -497,9 +504,22 @@ h1, h2, h3, h4 {
 .md-prose p { margin: 0 0 10px; }
 .md-prose strong { color: var(--ink-900); font-weight: 600; }
 .md-prose em { font-style: italic; }
-.md-prose ul { margin: 6px 0 14px; padding-left: 20px; }
+.md-prose ul, .md-prose ol { margin: 6px 0 14px; padding-left: 20px; }
 .md-prose li { margin: 4px 0; }
 .md-prose li::marker { color: var(--accent); }
+.md-prose hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 20px 0;
+}
+.md-prose pre, .md-prose code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12.5px;
+  background: var(--ink-100);
+  border-radius: 4px;
+}
+.md-prose code { padding: 1px 5px; }
+.md-prose pre { padding: 12px 14px; overflow-x: auto; }
 
 .result-empty .empty {
   flex: 1;
