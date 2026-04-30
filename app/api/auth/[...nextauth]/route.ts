@@ -2,6 +2,10 @@ export const runtime = "edge";
 
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import { NextRequest } from "next/server";
+
+// @AX:NOTE: @cloudflare/next-on-pages passes plain Request (no nextUrl)
+// NextAuth v5 requires NextRequest.nextUrl — wrap before passing to handler
 
 async function getCloudflareEnv(): Promise<Record<string, string | undefined>> {
   try {
@@ -40,27 +44,28 @@ function buildHandlers(env: Record<string, string | undefined>) {
     pages: {
       signIn: "/",
     },
-    // @AX:NOTE: debug mode — remove after auth is fixed
-    logger: {
-      error(err) {
-        console.error("[NextAuth Error]", err.name, err.message, (err as Error).stack ?? "");
-      },
-      warn(code) {
-        console.warn("[NextAuth Warn]", code);
-      },
-    },
   });
   return handlers;
+}
+
+function toNextRequest(req: Request): NextRequest {
+  return new NextRequest(req.url, {
+    method: req.method,
+    headers: req.headers,
+    body: req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
+    // @ts-expect-error duplex required for streaming body in some environments
+    duplex: "half",
+  });
 }
 
 export async function GET(req: Request): Promise<Response> {
   const env = await getCloudflareEnv();
   const handlers = buildHandlers(env);
-  return handlers.GET(req as Parameters<typeof handlers.GET>[0]);
+  return handlers.GET(toNextRequest(req));
 }
 
 export async function POST(req: Request): Promise<Response> {
   const env = await getCloudflareEnv();
   const handlers = buildHandlers(env);
-  return handlers.POST(req as Parameters<typeof handlers.POST>[0]);
+  return handlers.POST(toNextRequest(req));
 }
