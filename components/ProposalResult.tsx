@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import ReactMarkdown from "react-markdown";
 
 interface ProposalResultProps {
   text: string | null;
@@ -78,18 +79,7 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
         />
       ) : (
         <div className="result-rendered">
-          <pre
-            style={{
-              margin: 0,
-              fontFamily: "inherit",
-              fontSize: 14,
-              lineHeight: 1.65,
-              whiteSpace: "pre-wrap",
-              color: "var(--ink-700)",
-            }}
-          >
-            {displayText}
-          </pre>
+          <ReactMarkdown className="md-prose">{displayText}</ReactMarkdown>
         </div>
       )}
 

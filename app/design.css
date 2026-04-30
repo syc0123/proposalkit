@@ -311,6 +311,10 @@ h1, h2, h3, h4 {
   flex-direction: column;
 }
 
+.form-card {
+  align-self: start;
+}
+
 .card-head {
   display: flex;
   align-items: center;
@@ -412,8 +416,8 @@ h1, h2, h3, h4 {
   border: 1px solid var(--ink-200);
   border-radius: var(--radius-sm);
   padding: 16px 18px;
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: 14px;
   line-height: 1.6;
   color: var(--ink-700);
   background: var(--surface-2);
