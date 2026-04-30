@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
+import { signIn } from "next-auth/react";
 
 interface ProposalResultProps {
   text: string | null;
@@ -118,11 +119,10 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
             <strong>Sign in to save proposals</strong>
             <span>and generate more — free, no credit card.</span>
           </div>
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a
-            href="/api/auth/signin/google?callbackUrl=/"
+          <button
+            onClick={() => signIn("google", { callbackUrl: "/" })}
             className="btn btn-google"
-            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", border: "none", background: "white", padding: "8px 16px", borderRadius: 8, fontSize: 14 }}
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
               <path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.3a3.67 3.67 0 01-1.6 2.41v2h2.58c1.51-1.39 2.4-3.44 2.4-5.87z" fill="#4285F4"/>
@@ -131,7 +131,7 @@ export function ProposalResult({ text, isLoading, showSignin }: ProposalResultPr
               <path d="M8 3.18c1.18 0 2.23.41 3.06 1.2l2.3-2.3A8 8 0 00.84 4.42l2.67 2.07C4.14 4.59 5.91 3.18 8 3.18z" fill="#EA4335"/>
             </svg>
             Continue with Google
-          </a>
+          </button>
         </div>
       )}
     </div>

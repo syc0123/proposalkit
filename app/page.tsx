@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { ProposalForm } from "@/components/ProposalForm";
@@ -173,8 +174,11 @@ export default function HomePage() {
                   <strong>You&apos;ve used your free proposal.</strong>
                   <span>Sign in with Google to get 5 free proposals per month.</span>
                 </div>
-                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                <a href="/api/auth/signin/google?callbackUrl=/" className="btn btn-google">
+                <button
+                  onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+                  className="btn btn-google"
+                  style={{ cursor: "pointer" }}
+                >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.3a3.67 3.67 0 01-1.6 2.41v2h2.58c1.51-1.39 2.4-3.44 2.4-5.87z" fill="#4285F4"/>
                     <path d="M8 16c2.16 0 3.97-.72 5.3-1.94l-2.59-2.01c-.71.48-1.63.76-2.71.76-2.09 0-3.86-1.41-4.49-3.3H.84v2.07A8 8 0 008 16z" fill="#34A853"/>
@@ -182,7 +186,7 @@ export default function HomePage() {
                     <path d="M8 3.18c1.18 0 2.23.41 3.06 1.2l2.3-2.3A8 8 0 00.84 4.42l2.67 2.07C4.14 4.59 5.91 3.18 8 3.18z" fill="#EA4335"/>
                   </svg>
                   Sign in with Google
-                </a>
+                </button>
               </div>
             ) : (
               <ProposalForm onSubmit={handleGenerate} isLoading={isLoading} />
