@@ -2,6 +2,29 @@ export const runtime = "edge";
 
 // TEMPORARY debug endpoint — remove after auth is fixed
 
+import { NextRequest } from "next/server";
+
+function toNextRequest(req: Request): NextRequest {
+  return new NextRequest(req.url, {
+    method: req.method,
+    headers: req.headers,
+    body: req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
+    // @ts-expect-error duplex required for streaming body
+    duplex: "half",
+  });
+}
+
+function patchNextUrl(req: Request): Request {
+  if (!("nextUrl" in req)) {
+    Object.defineProperty(req, "nextUrl", {
+      value: new URL(req.url),
+      writable: true,
+      configurable: true,
+    });
+  }
+  return req;
+}
+
 export async function GET(req: Request): Promise<Response> {
   const result: Record<string, unknown> = {};
 
@@ -19,7 +42,23 @@ export async function GET(req: Request): Promise<Response> {
     result.cfEnvError = String(e);
   }
 
-  // 2. Try actual signin handler call
+  // 2. Check NextRequest.nextUrl presence
+  try {
+    const testUrl = new URL(req.url);
+    testUrl.pathname = "/api/auth/signin/google";
+    testUrl.search = "?callbackUrl=%2F";
+
+    const wrappedReq = toNextRequest(new Request(testUrl.toString(), { method: "GET", headers: req.headers }));
+    result.nextUrlCheck = {
+      hasNextUrl: "nextUrl" in wrappedReq,
+      nextUrlHref: (wrappedReq as NextRequest).nextUrl?.href ?? null,
+      nextUrlPathname: (wrappedReq as NextRequest).nextUrl?.pathname ?? null,
+    };
+  } catch (e) {
+    result.nextUrlCheckError = String(e);
+  }
+
+  // 3. Test with new NextRequest wrapping
   try {
     const { default: NextAuth } = await import("next-auth");
     const { default: Google } = await import("next-auth/providers/google");
@@ -36,18 +75,39 @@ export async function GET(req: Request): Promise<Response> {
       session: { strategy: "jwt" },
     });
 
-    // Simulate a GET to /api/auth/signin/google
     const testUrl = new URL(req.url);
     testUrl.pathname = "/api/auth/signin/google";
     testUrl.search = "?callbackUrl=%2F";
-    const testReq = new Request(testUrl.toString(), { method: "GET", headers: req.headers });
 
-    const resp = await handlers.GET(testReq as Parameters<typeof handlers.GET>[0]);
-    result.signinTest = {
-      status: resp.status,
-      location: resp.headers.get("location") ?? null,
-      body: resp.status !== 302 ? await resp.text().catch(() => null) : null,
-    };
+    // Test A: plain NextRequest (same as our fixed auth route)
+    const nextReq = toNextRequest(new Request(testUrl.toString(), { method: "GET", headers: req.headers }));
+    try {
+      const resp = await handlers.GET(nextReq);
+      result.testA_nextRequest = {
+        status: resp.status,
+        location: resp.headers.get("location") ?? null,
+        body: resp.status !== 302 ? await resp.text().catch(() => null) : null,
+      };
+    } catch (e) {
+      result.testA_error = String(e);
+      result.testA_stack = (e as Error).stack ?? null;
+    }
+
+    // Test B: patched plain Request (add nextUrl as URL directly)
+    const plainReq = new Request(testUrl.toString(), { method: "GET", headers: req.headers });
+    const patchedReq = patchNextUrl(plainReq) as Parameters<typeof handlers.GET>[0];
+    try {
+      const resp2 = await handlers.GET(patchedReq);
+      result.testB_patched = {
+        status: resp2.status,
+        location: resp2.headers.get("location") ?? null,
+        body: resp2.status !== 302 ? await resp2.text().catch(() => null) : null,
+      };
+    } catch (e) {
+      result.testB_error = String(e);
+      result.testB_stack = (e as Error).stack ?? null;
+    }
+
   } catch (e) {
     result.signinTestError = String(e);
     result.signinTestStack = (e as Error).stack ?? null;
