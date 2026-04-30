@@ -1,16 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import { ProposalForm } from "@/components/ProposalForm";
 import { ProposalResult } from "@/components/ProposalResult";
-import { LoginPrompt } from "@/components/LoginPrompt";
 import { UpgradeModal } from "@/components/UpgradeModal";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import type { ProposalInput, ProposalOutput, GenerateApiResponse } from "@/types/proposal";
 
 // @AX:NOTE: [AUTO] sessionStorage key for guest 1-free tracking — cleared on tab close
 const GUEST_USED_KEY = "pk:guest_used";
+
+const HOW_STEPS = [
+  {
+    num: "01",
+    title: "Enter 3 details",
+    desc: "Client, scope, and budget. That's it — no sign-up, no setup.",
+  },
+  {
+    num: "02",
+    title: "AI generates your proposal",
+    desc: "Gemini drafts a complete, structured proposal in about 30 seconds.",
+  },
+  {
+    num: "03",
+    title: "Edit & copy",
+    desc: "Tweak inline, then copy the markdown straight into email or your doc tool.",
+  },
+];
+
+const CHIPS = [
+  { icon: "🔧", label: "Plumbers & contractors" },
+  { icon: "🎨", label: "Interior designers" },
+  { icon: "📊", label: "Marketing consultants" },
+  { icon: "💻", label: "Web developers" },
+  { icon: "🌿", label: "Landscapers" },
+  { icon: "📋", label: "Accountants" },
+];
 
 export default function HomePage() {
   const [proposal, setProposal] = useState<ProposalOutput | null>(null);
@@ -47,7 +73,6 @@ export default function HomePage() {
 
       setProposal(data.proposal);
 
-      // Mark guest as used (only for unauthenticated first-time users)
       if (!guestUsed) {
         sessionStorage.setItem(GUEST_USED_KEY, "1");
         setGuestUsed(true);
@@ -64,117 +89,179 @@ export default function HomePage() {
 
   return (
     <>
-      <SiteHeader />
-      <main className="flex-1 bg-gray-50">
-        {/* Hero */}
-        <section className="bg-white border-b border-gray-100">
-          <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14 text-center">
-            <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-              Free AI Proposal Generator
-            </h1>
-            <p className="mt-3 text-base text-gray-500 sm:text-lg max-w-xl mx-auto">
-              Enter your industry, client name &amp; scope of work —{" "}
-              <span className="text-blue-600 font-medium">get a professional proposal in 30 seconds.</span>{" "}
-              No sign-up required.
-            </p>
-            <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm text-gray-500">
-              <span className="flex items-center gap-1">✓ Free to use</span>
-              <span className="flex items-center gap-1">✓ AI-powered by Gemini</span>
-              <span className="flex items-center gap-1">✓ Editable output</span>
-              <span className="flex items-center gap-1">✓ No templates needed</span>
-            </div>
-          </div>
-        </section>
+      {/* ── Nav (outside .page so sticky spans full viewport width) ── */}
+      <header className="nav">
+        <Link className="logo" href="/">
+          <span className="logo-mark" style={{ color: "#2563EB" }}>
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="none">
+              <rect x="2" y="2" width="16" height="16" rx="4" fill="currentColor" />
+              <path
+                d="M7 6.5h4.2a2.3 2.3 0 010 4.6H7V6.5zM7 11.1V14"
+                stroke="white"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          <span className="logo-word">ProposalKit</span>
+        </Link>
+        <nav className="nav-links">
+          <Link href="/about">About</Link>
+          <ThemeToggle />
+          <a
+            className="btn btn-primary btn-sm"
+            href="#generator"
+            style={{ background: "#2563EB" }}
+          >
+            Try free
+          </a>
+        </nav>
+      </header>
+      <div className="page">
 
-        {/* Generator */}
-        <section className="mx-auto max-w-5xl px-4 py-8 sm:py-10">
-          <div className={`grid gap-6 ${proposal ? "sm:grid-cols-2" : ""}`}>
-            {/* Form column */}
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-sm font-semibold text-gray-700">Proposal Details</h2>
-              {isBlocked ? (
-                <LoginPrompt />
-              ) : (
-                <ProposalForm onSubmit={handleGenerate} isLoading={isLoading} />
-              )}
-              {error && (
-                <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600">
-                  {error}
-                </p>
-              )}
+      {/* ── Hero ── */}
+      <section className="hero">
+        <div className="hero-eyebrow">
+          <span className="eyebrow-dot" style={{ background: "#2563EB" }} />
+          Free · No sign-up · 30 seconds
+        </div>
+        <h1 className="hero-title">
+          Free AI Proposal
+          <br />
+          Generator
+        </h1>
+        <p className="hero-sub">
+          Enter your industry, client &amp; scope — get a professional proposal in 30&nbsp;seconds.
+        </p>
+        <div className="trust">
+          {["Free to use", "AI-powered", "Editable output", "No sign-up needed"].map((t) => (
+            <span key={t} className="trust-badge">
+              <span className="trust-check" style={{ color: "#2563EB" }}>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                  <path
+                    d="M3 8.5l3 3 7-7"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              {t}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Generator ── */}
+      <section id="generator" className="generator">
+        <div className="gen-grid">
+          {/* Form card */}
+          <div className="form-card">
+            <div className="card-head">
+              <h3>Proposal Details</h3>
+              <span className="card-tag">3 fields · 30 seconds</span>
             </div>
 
-            {/* Result column (only when proposal exists) */}
-            {proposal && (
-              <div className="rounded-2xl bg-white p-6 shadow-sm">
-                <ProposalResult key={proposal.generatedAt} text={proposal.text} />
-                {guestUsed && (
-                  <div className="mt-4">
-                    <LoginPrompt />
-                  </div>
-                )}
+            {isBlocked ? (
+              <div
+                className="signin-banner"
+                style={{ borderColor: "var(--ink-200)", background: "var(--ink-100)" }}
+              >
+                <div className="signin-text">
+                  <strong>You&apos;ve used your free proposal.</strong>
+                  <span>Sign in with Google to get 5 free proposals per month.</span>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                <a href="/api/auth/signin/google?callbackUrl=/" className="btn btn-google">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M15.68 8.18c0-.57-.05-1.12-.14-1.64H8v3.1h4.3a3.67 3.67 0 01-1.6 2.41v2h2.58c1.51-1.39 2.4-3.44 2.4-5.87z" fill="#4285F4"/>
+                    <path d="M8 16c2.16 0 3.97-.72 5.3-1.94l-2.59-2.01c-.71.48-1.63.76-2.71.76-2.09 0-3.86-1.41-4.49-3.3H.84v2.07A8 8 0 008 16z" fill="#34A853"/>
+                    <path d="M3.51 9.51A4.8 4.8 0 013.26 8c0-.52.09-1.03.25-1.51V4.42H.84A8 8 0 000 8c0 1.3.31 2.52.84 3.58l2.67-2.07z" fill="#FBBC05"/>
+                    <path d="M8 3.18c1.18 0 2.23.41 3.06 1.2l2.3-2.3A8 8 0 00.84 4.42l2.67 2.07C4.14 4.59 5.91 3.18 8 3.18z" fill="#EA4335"/>
+                  </svg>
+                  Sign in with Google
+                </a>
               </div>
+            ) : (
+              <ProposalForm onSubmit={handleGenerate} isLoading={isLoading} />
+            )}
+
+            {error && (
+              <p
+                style={{
+                  marginTop: 12,
+                  padding: "10px 14px",
+                  borderRadius: "var(--radius-sm)",
+                  background: "rgba(239,68,68,0.08)",
+                  color: "#DC2626",
+                  fontSize: 13,
+                }}
+              >
+                {error}
+              </p>
             )}
           </div>
-        </section>
 
-        {/* How it works */}
-        <section id="how-it-works" className="bg-white border-t border-gray-100">
-          <div className="mx-auto max-w-5xl px-4 py-12">
-            <h2 className="text-xl font-bold text-gray-900 mb-8 text-center">How it works</h2>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[
-                {
-                  step: "1",
-                  title: "Enter 3 details",
-                  desc: "Type your client name, scope of work, and budget. Industry is optional but improves the result.",
-                },
-                {
-                  step: "2",
-                  title: "AI generates your proposal",
-                  desc: "Google Gemini writes a complete, industry-appropriate proposal with introduction, pricing, and timeline.",
-                },
-                {
-                  step: "3",
-                  title: "Edit & copy",
-                  desc: "Tweak the result directly in your browser, then copy it to your email or document with one click.",
-                },
-              ].map((item) => (
-                <div key={item.step} className="rounded-xl border border-gray-100 p-5">
-                  <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                    {item.step}
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.desc}</p>
-                </div>
-              ))}
+          {/* Result card — always visible; shows skeleton when empty */}
+          <ProposalResult
+            key={proposal?.generatedAt ?? "empty"}
+            text={proposal?.text ?? null}
+            isLoading={isLoading}
+            showSignin={guestUsed && !!proposal}
+          />
+        </div>
+      </section>
+
+      {/* ── How it works ── */}
+      <section className="section" id="how-it-works">
+        <div className="section-head">
+          <span className="section-kicker">How it works</span>
+          <h2>Three steps, one proposal.</h2>
+        </div>
+        <div className="how-grid">
+          {HOW_STEPS.map(({ num, title, desc }) => (
+            <div key={num} className="how-card">
+              <div className="how-num" style={{ color: "#2563EB" }}>{num}</div>
+              <h4>{title}</h4>
+              <p>{desc}</p>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        {/* Use cases */}
-        <section className="mx-auto max-w-5xl px-4 py-12">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">
-            Built for small business owners &amp; freelancers
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
-            {[
-              "Plumbers & contractors",
-              "Interior designers",
-              "Marketing consultants",
-              "Web developers",
-              "Landscapers & gardeners",
-              "Accountants & bookkeepers",
-            ].map((role) => (
-              <div key={role} className="flex items-center gap-2 rounded-lg bg-white border border-gray-100 px-4 py-3 text-gray-700">
-                <span className="text-blue-500">✓</span> {role}
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-      <SiteFooter />
+      {/* ── Built for ── */}
+      <section className="section">
+        <div className="section-head">
+          <span className="section-kicker">Built for</span>
+          <h2>Solo operators and small teams.</h2>
+        </div>
+        <div className="chips">
+          {CHIPS.map(({ icon, label }) => (
+            <div key={label} className="chip">
+              <span className="chip-bar" />
+              <span className="chip-icon">{icon}</span>
+              <span className="chip-label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="footer">
+        <span>© 2026 ProposalKit. All rights reserved.</span>
+        <nav>
+          <Link href="/about">About</Link>
+          <span className="sep">·</span>
+          <Link href="/privacy">Privacy Policy</Link>
+          <span className="sep">·</span>
+          <Link href="/terms">Terms of Service</Link>
+        </nav>
+      </footer>
+
       <UpgradeModal isOpen={showUpgrade} onClose={() => setShowUpgrade(false)} />
+      </div>
     </>
   );
 }

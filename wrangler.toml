@@ -5,5 +5,5 @@ pages_build_output_dir = ".vercel/output/static"
 
 [[kv_namespaces]]
 binding = "RATE_LIMIT_KV"
-id = "placeholder-replace-with-real-id"
-preview_id = "placeholder-replace-with-real-preview-id"
+id = "63703d23e89f4b7dbd1d80337cbff6a1"
+preview_id = "50608aa3b884483595d1f1224430a7bb"
