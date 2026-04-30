@@ -14,17 +14,6 @@ function toNextRequest(req: Request): NextRequest {
   });
 }
 
-function patchNextUrl(req: Request): Request {
-  if (!("nextUrl" in req)) {
-    Object.defineProperty(req, "nextUrl", {
-      value: new URL(req.url),
-      writable: true,
-      configurable: true,
-    });
-  }
-  return req;
-}
-
 export async function GET(req: Request): Promise<Response> {
   const result: Record<string, unknown> = {};
 
@@ -37,35 +26,26 @@ export async function GET(req: Request): Promise<Response> {
       ["AUTH_GOOGLE_ID","AUTH_GOOGLE_SECRET","AUTH_SECRET","AUTH_URL","AUTH_TRUST_HOST"].includes(k)
     );
     result.googleIdLen = (cfEnvObj.AUTH_GOOGLE_ID ?? "").length;
-    result.googleIdPrefix = (cfEnvObj.AUTH_GOOGLE_ID ?? "").slice(0, 12) + "...";
+    result.googleSecretLen = (cfEnvObj.AUTH_GOOGLE_SECRET ?? "").length;
+    result.authSecretLen = (cfEnvObj.AUTH_SECRET ?? "").length;
+    result.authSecretType = typeof cfEnvObj.AUTH_SECRET;
+    result.authUrlValue = cfEnvObj.AUTH_URL ?? "(not set)";
+    result.authTrustHostValue = cfEnvObj.AUTH_TRUST_HOST ?? "(not set)";
   } catch (e) {
     result.cfEnvError = String(e);
   }
 
-  // 2. Check NextRequest.nextUrl presence
-  try {
-    const testUrl = new URL(req.url);
-    testUrl.pathname = "/api/auth/signin/google";
-    testUrl.search = "?callbackUrl=%2F";
-
-    const wrappedReq = toNextRequest(new Request(testUrl.toString(), { method: "GET", headers: req.headers }));
-    result.nextUrlCheck = {
-      hasNextUrl: "nextUrl" in wrappedReq,
-      nextUrlHref: (wrappedReq as NextRequest).nextUrl?.href ?? null,
-      nextUrlPathname: (wrappedReq as NextRequest).nextUrl?.pathname ?? null,
-    };
-  } catch (e) {
-    result.nextUrlCheckError = String(e);
-  }
-
-  // 3. Test with new NextRequest wrapping
+  // 2. Test with NextRequest wrapping + catch the actual error
   try {
     const { default: NextAuth } = await import("next-auth");
     const { default: Google } = await import("next-auth/providers/google");
 
+    const secret = cfEnvObj.AUTH_SECRET;
+    result.secretPassedToNextAuth = secret ? `${String(secret).length} chars` : "(falsy)";
+
     const { handlers } = NextAuth({
       trustHost: true,
-      secret: cfEnvObj.AUTH_SECRET ?? process.env.AUTH_SECRET,
+      secret,
       providers: [
         Google({
           clientId: cfEnvObj.AUTH_GOOGLE_ID ?? "",
@@ -73,39 +53,34 @@ export async function GET(req: Request): Promise<Response> {
         }),
       ],
       session: { strategy: "jwt" },
+      logger: {
+        error(err) {
+          // captured below via result
+          result.nextAuthInternalError = {
+            name: (err as Error).name ?? "unknown",
+            message: (err as Error).message ?? String(err),
+          };
+        },
+      },
     });
 
     const testUrl = new URL(req.url);
     testUrl.pathname = "/api/auth/signin/google";
     testUrl.search = "?callbackUrl=%2F";
 
-    // Test A: plain NextRequest (same as our fixed auth route)
     const nextReq = toNextRequest(new Request(testUrl.toString(), { method: "GET", headers: req.headers }));
-    try {
-      const resp = await handlers.GET(nextReq);
-      result.testA_nextRequest = {
-        status: resp.status,
-        location: resp.headers.get("location") ?? null,
-        body: resp.status !== 302 ? await resp.text().catch(() => null) : null,
-      };
-    } catch (e) {
-      result.testA_error = String(e);
-      result.testA_stack = (e as Error).stack ?? null;
-    }
+    const resp = await handlers.GET(nextReq);
 
-    // Test B: patched plain Request (add nextUrl as URL directly)
-    const plainReq = new Request(testUrl.toString(), { method: "GET", headers: req.headers });
-    const patchedReq = patchNextUrl(plainReq) as Parameters<typeof handlers.GET>[0];
-    try {
-      const resp2 = await handlers.GET(patchedReq);
-      result.testB_patched = {
-        status: resp2.status,
-        location: resp2.headers.get("location") ?? null,
-        body: resp2.status !== 302 ? await resp2.text().catch(() => null) : null,
-      };
-    } catch (e) {
-      result.testB_error = String(e);
-      result.testB_stack = (e as Error).stack ?? null;
+    result.signinResult = {
+      status: resp.status,
+      location: resp.headers.get("location") ?? null,
+      contentType: resp.headers.get("content-type") ?? null,
+    };
+
+    // If not a redirect, grab the body for more info
+    if (resp.status !== 302 && resp.status !== 301) {
+      const body = await resp.text().catch(() => null);
+      result.signinBody = body ? body.slice(0, 500) : null;
     }
 
   } catch (e) {
