@@ -1,7 +1,9 @@
 import type { ProposalInput, ProposalOutput } from "@/types/proposal";
 
+// gemini-2.5-flash experiences intermittent 503 (high demand) on free tier.
+// gemini-2.5-flash-lite provides the same quality with better availability.
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 
 function buildPrompt(input: ProposalInput): string {
   const industry = input.industry?.trim() || "General";
