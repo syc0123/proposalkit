@@ -42,14 +42,8 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   // @AX:NOTE: [AUTO] Resend email notification — awaited for debug visibility, never blocks on error
-  // @AX:NOTE: process.env is unavailable in CF edge runtime — read from getRequestContext().env
-  let resendKey: string | undefined;
-  try {
-    const { getRequestContext } = await import("@cloudflare/next-on-pages");
-    resendKey = (getRequestContext().env as Record<string, string | undefined>)["RESEND_API_KEY"];
-  } catch {
-    resendKey = process.env.RESEND_API_KEY; // local dev fallback
-  }
+  // CF Pages env vars are accessible via process.env in edge runtime (same as GEMINI_API_KEY in gemini.ts)
+  const resendKey = process.env.RESEND_API_KEY;
   let emailStatus: string = resendKey ? "pending" : "no_key";
 
   if (resendKey) {
