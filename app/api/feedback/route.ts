@@ -44,6 +44,13 @@ export async function POST(request: Request): Promise<Response> {
   // @AX:NOTE: [AUTO] Resend email notification — awaited for debug visibility, never blocks on error
   // CF Pages env vars are accessible via process.env in edge runtime (same as GEMINI_API_KEY in gemini.ts)
   const resendKey = process.env.RESEND_API_KEY;
+  // Debug: expose partial key info and available env keys (no sensitive values)
+  const envDebug = {
+    hasResendKey: !!resendKey,
+    resendKeyLen: resendKey?.length ?? 0,
+    resendKeyPrefix: resendKey?.slice(0, 6) ?? "none",
+    hasGeminiKey: !!process.env.GEMINI_API_KEY,
+  };
   let emailStatus: string = resendKey ? "pending" : "no_key";
 
   if (resendKey) {
@@ -83,5 +90,5 @@ export async function POST(request: Request): Promise<Response> {
     }
   }
 
-  return Response.json({ ok: true, emailStatus });
+  return Response.json({ ok: true, emailStatus, envDebug });
 }
