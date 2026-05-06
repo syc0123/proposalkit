@@ -47,9 +47,11 @@ export async function POST(request: Request): Promise<Response> {
   // Debug: expose partial key info and available env keys (no sensitive values)
   const envDebug = {
     hasResendKey: !!resendKey,
+    resendKeyType: typeof resendKey,
     resendKeyLen: resendKey?.length ?? 0,
     resendKeyPrefix: resendKey?.slice(0, 6) ?? "none",
     hasGeminiKey: !!process.env.GEMINI_API_KEY,
+    geminiKeyLen: process.env.GEMINI_API_KEY?.length ?? 0,
   };
   let emailStatus: string = resendKey ? "pending" : "no_key";
 
