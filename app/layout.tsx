@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://proposalkit.pages.dev",
   },
+  other: {
+    "google-adsense-account": "ca-pub-8182501552183853",
+  },
 };
 
 export default function RootLayout({
