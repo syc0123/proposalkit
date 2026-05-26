@@ -8,25 +8,29 @@ import Link from "next/link";
 
 const STORAGE_KEY = "pk:cookie_consent";
 
-type ConsentState = "accepted" | "declined" | "pending";
+type ConsentState = "accepted" | "declined" | "pending" | "loading";
 
 export default function CookieConsent() {
-  const [state, setState] = useState<ConsentState>("pending");
-  const [mounted, setMounted] = useState(false);
+  // Start with "loading" to avoid hydration mismatch — banner only shows after mount + storage check
+  const [state, setState] = useState<ConsentState>("loading");
 
   useEffect(() => {
-    setMounted(true);
+    // Read once, set once — no cascading renders.
+    // This is the canonical hydration-safe pattern for client-only data (localStorage).
+    let initial: ConsentState = "pending";
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === "accepted" || stored === "declined") {
-        setState(stored);
+        initial = stored;
       }
     } catch {
       // localStorage unavailable — show banner
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setState(initial);
   }, []);
 
-  function persist(value: ConsentState) {
+  function persist(value: "accepted" | "declined") {
     try {
       localStorage.setItem(STORAGE_KEY, value);
     } catch {
@@ -35,8 +39,8 @@ export default function CookieConsent() {
     setState(value);
   }
 
-  // Avoid hydration mismatch by not rendering until mounted
-  if (!mounted || state !== "pending") return null;
+  // Only render the banner when pending (mounted + no previous decision)
+  if (state !== "pending") return null;
 
   return (
     <div

@@ -48,10 +48,10 @@ export default function AboutPage() {
             Most proposal software is built for enterprise sales teams. It assumes you have a CRM, a sales operations function, a marketing department to handle templates, and several hours each week to maintain it. For a solo contractor, a freelance designer, or a two-person consulting practice, that workflow is the opposite of what they need. They need to write one good proposal, send it, and get back to running their business.
           </p>
           <p style={{ color: "var(--ink-700)", fontSize: 16, lineHeight: 1.75, marginBottom: 16 }}>
-            We built ProposalKit after watching dozens of freelancers and small business owners lose work to slow proposals. Not bad proposals — slow ones. A roofer who took three days to put together a written estimate because they didn't have a template. A consultant who delayed sending a proposal for two weeks because the format felt wrong. A web designer who lost a $14,000 project to a competitor who responded same-day with a basic but well-structured document. Speed and structure beat polish in almost every case.
+            We built ProposalKit after watching dozens of freelancers and small business owners lose work to slow proposals. Not bad proposals — slow ones. A roofer who took three days to put together a written estimate because they didn&apos;t have a template. A consultant who delayed sending a proposal for two weeks because the format felt wrong. A web designer who lost a $14,000 project to a competitor who responded same-day with a basic but well-structured document. Speed and structure beat polish in almost every case.
           </p>
           <p style={{ color: "var(--ink-700)", fontSize: 16, lineHeight: 1.75 }}>
-            The tool exists to close that gap. You give us three pieces of context — who the client is, what they need, and the budget — and we produce a complete proposal in 30 seconds that you can edit and send the same day. No templates to maintain. No software to learn. No monthly subscription for a workflow you'll use four times a month.
+            The tool exists to close that gap. You give us three pieces of context — who the client is, what they need, and the budget — and we produce a complete proposal in 30 seconds that you can edit and send the same day. No templates to maintain. No software to learn. No monthly subscription for a workflow you&apos;ll use four times a month.
           </p>
         </section>
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
             ProposalKit is built for small business owners and freelancers — plumbers, consultants, interior designers, web developers, marketing agencies, contractors, and accountants — who need to win clients without spending hours writing. You give us three details. We hand you back a polished proposal you can send today.
           </p>
           <p style={{ color: "var(--ink-700)", fontSize: 16, lineHeight: 1.75 }}>
-            No bloat, no setup, no learning curve. The AI is powered by Google Gemini 2.5 Flash, which is fast enough to draft a complete multi-section proposal in under a minute and is industry-aware enough to use the right terminology for your trade. Plumbing proposals don't sound like consulting proposals; design proposals don't sound like roofing estimates. The model adapts to your context.
+            No bloat, no setup, no learning curve. The AI is powered by Google Gemini 2.5 Flash, which is fast enough to draft a complete multi-section proposal in under a minute and is industry-aware enough to use the right terminology for your trade. Plumbing proposals don&apos;t sound like consulting proposals; design proposals don&apos;t sound like roofing estimates. The model adapts to your context.
           </p>
         </section>
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
               <span className="feat-text">
                 <strong>Enter 3 details</strong>
                 <span>
-                  Client name, scope of work, and budget. Optionally add your industry, your business name, and a target timeline. That's it — no sign-up, no setup, no credit card.
+                  Client name, scope of work, and budget. Optionally add your industry, your business name, and a target timeline. That&apos;s it — no sign-up, no setup, no credit card.
                 </span>
               </span>
             </li>
@@ -148,10 +148,10 @@ export default function AboutPage() {
         </section>
 
         <section className="about-section">
-          <span className="kicker">Who it's for</span>
+          <span className="kicker">Who it&apos;s for</span>
           <h2>Industries we serve</h2>
           <p style={{ color: "var(--ink-700)", fontSize: 16, lineHeight: 1.75, marginBottom: 20 }}>
-            ProposalKit is designed for solo operators and small teams across a wide range of service businesses. We've tuned the AI to produce proposals that feel native to each industry's conventions and vocabulary. Detailed guides and proposal templates are available for the following segments:
+            ProposalKit is designed for solo operators and small teams across a wide range of service businesses. We&apos;ve tuned the AI to produce proposals that feel native to each industry&apos;s conventions and vocabulary. Detailed guides and proposal templates are available for the following segments:
           </p>
           <ul className="feat-list">
             <li>
