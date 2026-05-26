@@ -51,6 +51,14 @@ const GUIDES = [
     readingTime: "10 min",
     topics: ["Follow-up", "Sales", "Cadence"],
   },
+  {
+    href: "/guides/proposal-negotiation",
+    title: "How to negotiate proposal pricing without losing the deal",
+    description:
+      "Most freelancers either cave on price or lose the deal. The third option — negotiate by adjusting scope, not discounting fee — wins more often and protects your effective rate.",
+    readingTime: "11 min",
+    topics: ["Negotiation", "Pricing", "Sales"],
+  },
 ];
 
 export default function GuidesIndexPage() {
