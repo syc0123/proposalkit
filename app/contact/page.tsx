@@ -5,7 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Contact — ProposalKit",
+  title: "Contact",
   description:
     "Get in touch with the ProposalKit team. Send feedback, report a bug, request a feature, or ask a question about your account.",
 };

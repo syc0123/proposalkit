@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "How to Write a Business Proposal (Step-by-Step Guide) | ProposalKit",
+  title: "How to Write a Business Proposal (Step-by-Step Guide)",
   description:
     "A practical guide to writing business proposals that win clients. Covers structure, language patterns, pricing presentation, and common mistakes.",
   openGraph: {

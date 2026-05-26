@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "10 Common Proposal Mistakes That Cost You Deals | ProposalKit",
+  title: "10 Common Proposal Mistakes That Cost You Deals",
   description:
     "The ten most common mistakes in business proposals — from vague scope to weak acceptance steps — and how to fix each one before you send.",
 };

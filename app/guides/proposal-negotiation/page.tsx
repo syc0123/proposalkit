@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "How to Negotiate Proposal Pricing Without Losing the Deal | ProposalKit",
+  title: "How to Negotiate Proposal Pricing Without Losing the Deal",
   description:
     "Most freelancers either cave on price or lose the deal. The third option — negotiate by adjusting scope, not discounting fee — wins more often. Here's how.",
 };

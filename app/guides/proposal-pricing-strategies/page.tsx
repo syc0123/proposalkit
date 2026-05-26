@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Proposal Pricing Strategies That Win at Full Fee | ProposalKit",
+  title: "Proposal Pricing Strategies That Win at Full Fee",
   description:
     "Six pricing structures used by senior consultants, agencies, and freelancers — and how to present them in proposals so buyers accept without discounting.",
 };

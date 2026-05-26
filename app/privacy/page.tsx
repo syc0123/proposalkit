@@ -3,7 +3,7 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — ProposalKit",
+  title: "Privacy Policy",
   description:
     "How ProposalKit collects, uses, and protects your data. We don't sell data; we share only with the providers required to run the service.",
 };

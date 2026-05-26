@@ -4,7 +4,7 @@ import ForLandingTemplate from "@/components/ForLandingTemplate";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Free Proposal Generator for Marketing & Creative Agencies | ProposalKit",
+  title: "Free Proposal Generator for Marketing & Creative Agencies",
   description:
     "Generate professional agency proposals in 30 seconds. Free AI proposal tool for marketing, advertising, PR, and creative agencies.",
 };

@@ -4,7 +4,7 @@ import ForLandingTemplate from "@/components/ForLandingTemplate";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Free Proposal Generator for Web Designers & Developers | ProposalKit",
+  title: "Free Proposal Generator for Web Designers & Developers",
   description:
     "Generate professional web design and development proposals in 30 seconds. Free AI proposal tool built for designers, developers, and UX professionals.",
 };

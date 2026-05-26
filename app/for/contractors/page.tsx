@@ -4,7 +4,7 @@ import ForLandingTemplate from "@/components/ForLandingTemplate";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Free Business Proposal Generator for Contractors | ProposalKit",
+  title: "Free Business Proposal Generator for Contractors",
   description:
     "Generate professional contractor proposals in 30 seconds. Free AI proposal tool for plumbers, electricians, roofers, and general contractors.",
 };

@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "The Proposal Follow-up Strategy That Closes More Deals | ProposalKit",
+  title: "The Proposal Follow-up Strategy That Closes More Deals",
   description:
     "Most proposals don't lose to better competitors — they lose to silence. A practical follow-up cadence, with email templates and timing principles that close stalled deals.",
 };

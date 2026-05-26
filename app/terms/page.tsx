@@ -3,7 +3,7 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — ProposalKit",
+  title: "Terms of Service",
   description:
     "The terms governing your use of ProposalKit, including free-tier limits, acceptable use, intellectual property, and dispute resolution.",
 };

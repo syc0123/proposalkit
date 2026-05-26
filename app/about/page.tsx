@@ -3,7 +3,7 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
-  title: "About — ProposalKit",
+  title: "About",
   description:
     "ProposalKit is a free AI proposal generator built for small business owners and freelancers who need to win clients without spending hours writing.",
 };

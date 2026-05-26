@@ -4,7 +4,7 @@ import GuideLayout from "@/components/GuideLayout";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Proposal vs. Quote vs. Estimate: Which One to Send | ProposalKit",
+  title: "Proposal vs. Quote vs. Estimate: Which One to Send",
   description:
     "The three documents are not interchangeable. Learn when to send each, what makes them legally binding, and how the wrong choice costs deals.",
 };

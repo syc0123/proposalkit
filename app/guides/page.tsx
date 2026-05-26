@@ -5,7 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  title: "Proposal Writing Guides | ProposalKit",
+  title: "Proposal Writing Guides",
   description:
     "Long-form guides on writing business proposals that win clients. Pricing strategies, structure, and the difference between proposals, quotes, and estimates.",
 };
