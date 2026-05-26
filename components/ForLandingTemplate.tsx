@@ -12,6 +12,11 @@ interface Faq {
   a: string;
 }
 
+interface GuideSection {
+  heading: string;
+  body: string[];
+}
+
 interface LandingProps {
   profession: string;
   h1: string;
@@ -20,6 +25,12 @@ interface LandingProps {
   whatIncludes: string[];
   faqs: Faq[];
   ctaLabel: string;
+  // @AX:NOTE: longGuide is the unique long-form content for AdSense content-depth requirements
+  longGuide: {
+    title: string;
+    intro: string;
+    sections: GuideSection[];
+  };
 }
 
 export default function ForLandingTemplate({
@@ -30,6 +41,7 @@ export default function ForLandingTemplate({
   whatIncludes,
   faqs,
   ctaLabel,
+  longGuide,
 }: LandingProps) {
   return (
     <>
@@ -97,6 +109,35 @@ export default function ForLandingTemplate({
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Long-form guide — substantial unique content for SEO and AdSense */}
+        <section className="about-section">
+          <span className="kicker">Complete guide</span>
+          <h2>{longGuide.title}</h2>
+          <p style={{ color: "var(--ink-700)", fontSize: 16, lineHeight: 1.7, marginBottom: 28 }}>
+            {longGuide.intro}
+          </p>
+          {longGuide.sections.map((s) => (
+            <div key={s.heading} style={{ marginBottom: 32 }}>
+              <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12, color: "var(--ink-900)" }}>
+                {s.heading}
+              </h3>
+              {s.body.map((paragraph, i) => (
+                <p
+                  key={i}
+                  style={{
+                    color: "var(--ink-700)",
+                    fontSize: 15,
+                    lineHeight: 1.7,
+                    marginBottom: 12,
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ))}
         </section>
 
         {/* FAQ */}
