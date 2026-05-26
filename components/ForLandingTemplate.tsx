@@ -62,6 +62,8 @@ export default function ForLandingTemplate({
           <span className="logo-word">ProposalKit</span>
         </Link>
         <nav className="nav-links">
+          <Link href="/about">About</Link>
+          <Link href="/guides">Guides</Link>
           <ThemeToggle />
           <Link className="btn btn-primary btn-sm" href="/" style={{ background: "#2563EB" }}>
             Try free
@@ -167,6 +169,10 @@ export default function ForLandingTemplate({
             <Link href="/">Home</Link>
             <span className="sep">·</span>
             <Link href="/about">About</Link>
+            <span className="sep">·</span>
+            <Link href="/guides">Guides</Link>
+            <span className="sep">·</span>
+            <Link href="/contact">Contact</Link>
             <span className="sep">·</span>
             <Link href="/privacy">Privacy Policy</Link>
             <span className="sep">·</span>

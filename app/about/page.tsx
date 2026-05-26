@@ -28,6 +28,7 @@ export default function AboutPage() {
           <span className="logo-word">ProposalKit</span>
         </Link>
         <nav className="nav-links">
+          <Link href="/guides">Guides</Link>
           <ThemeToggle />
           <Link className="btn btn-primary btn-sm" href="/" style={{ background: "#2563EB" }}>
             Try free
@@ -228,6 +229,10 @@ export default function AboutPage() {
           <span>© 2026 ProposalKit. All rights reserved.</span>
           <nav>
             <Link href="/about">About</Link>
+            <span className="sep">·</span>
+            <Link href="/guides">Guides</Link>
+            <span className="sep">·</span>
+            <Link href="/contact">Contact</Link>
             <span className="sep">·</span>
             <Link href="/privacy">Privacy Policy</Link>
             <span className="sep">·</span>

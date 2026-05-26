@@ -324,11 +324,117 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
           </div>
         </section>
 
+        {/* ── Why proposals matter (educational) ── */}
+        <section className="section">
+          <div className="section-head">
+            <span className="section-kicker">Why proposals matter</span>
+            <h2>The proposal is where you win — or lose — the deal.</h2>
+          </div>
+          <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 16px" }}>
+            <p style={{ fontSize: 16, lineHeight: 1.8, color: "var(--ink-700)", marginBottom: 16 }}>
+              Most freelancers and small business owners treat the proposal as paperwork — something
+              to send after the buyer has already decided to hire them. That framing is backwards.
+              For competitive engagements, the proposal is where the decision actually gets made.
+              A buyer comparing three vendors at similar prices will pick the one whose proposal
+              feels clearest, most professional, and most specific to their situation. Speed of
+              response, structure, and tone all influence the choice as much as price.
+            </p>
+            <p style={{ fontSize: 16, lineHeight: 1.8, color: "var(--ink-700)", marginBottom: 16 }}>
+              A well-written proposal does three jobs at once. It defines the commercial terms so
+              both sides know what was agreed. It demonstrates strategic thinking by framing the
+              work as a solution to the client&apos;s specific problem, not as a generic service
+              menu. And it reduces the buyer&apos;s perceived risk by replacing uncertainty —
+              about scope, timeline, payment, and the relationship — with documented commitments.
+              The proposals that win consistently aren&apos;t the longest or the most polished;
+              they&apos;re the ones that handle these three jobs in the fewest pages.
+            </p>
+            <p style={{ fontSize: 16, lineHeight: 1.8, color: "var(--ink-700)" }}>
+              We built ProposalKit because most small business owners don&apos;t have time to draft
+              a proposal from scratch for every opportunity, and the existing template libraries
+              are either generic or locked behind expensive subscriptions. With three inputs —
+              client, scope, budget — the AI drafts a complete, structured proposal in 30 seconds.
+              You spend the next 5–10 minutes customizing it. Then you send it the same day you
+              had the call. Speed and structure beat polish in almost every case.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Guides preview ── */}
+        <section className="section">
+          <div className="section-head">
+            <span className="section-kicker">Free guides</span>
+            <h2>Learn what makes proposals close.</h2>
+          </div>
+          <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 16px", display: "flex", flexDirection: "column", gap: 16 }}>
+            <Link
+              href="/guides/how-to-write-a-business-proposal"
+              style={{
+                display: "block",
+                padding: 20,
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius)",
+                background: "var(--surface)",
+                textDecoration: "none",
+              }}
+            >
+              <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4, color: "var(--ink-900)" }}>
+                How to write a business proposal that actually wins clients
+              </h4>
+              <p style={{ fontSize: 14, color: "var(--ink-600)", lineHeight: 1.65 }}>
+                The eight-section structure used by senior closers, with language patterns and
+                pricing logic that separate winning proposals from generic ones.
+              </p>
+            </Link>
+            <Link
+              href="/guides/proposal-vs-quote-vs-estimate"
+              style={{
+                display: "block",
+                padding: 20,
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius)",
+                background: "var(--surface)",
+                textDecoration: "none",
+              }}
+            >
+              <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4, color: "var(--ink-900)" }}>
+                Proposal vs. quote vs. estimate: which one to send
+              </h4>
+              <p style={{ fontSize: 14, color: "var(--ink-600)", lineHeight: 1.65 }}>
+                Three documents, three commercial outcomes. When each is appropriate, what makes
+                them legally binding, and the mistake that costs small businesses real money.
+              </p>
+            </Link>
+            <Link
+              href="/guides/proposal-pricing-strategies"
+              style={{
+                display: "block",
+                padding: 20,
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius)",
+                background: "var(--surface)",
+                textDecoration: "none",
+              }}
+            >
+              <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4, color: "var(--ink-900)" }}>
+                Proposal pricing strategies that win at full fee
+              </h4>
+              <p style={{ fontSize: 14, color: "var(--ink-600)", lineHeight: 1.65 }}>
+                Six pricing structures used by senior consultants and agencies — and how to present
+                them so buyers accept without negotiation.
+              </p>
+            </Link>
+          </div>
+        </section>
+
         {/* ── Footer ── */}
         <footer className="footer">
           <span>© 2026 ProposalKit. All rights reserved.</span>
           <nav>
             <Link href="/about">About</Link>
+            <span className="sep">·</span>
+            <Link href="/guides">Guides</Link>
+            <span className="sep">·</span>
+            <Link href="/contact">Contact</Link>
             <span className="sep">·</span>
             <Link href="/privacy">Privacy Policy</Link>
             <span className="sep">·</span>
