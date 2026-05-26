@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { organizationSchema, webSiteSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,6 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" className={inter.variable}>
       <head>
+        {/* JSON-LD: Organization + WebSite — site-wide structured data for Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema()) }}
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8182501552183853"

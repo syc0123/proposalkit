@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import { faqSchema } from "@/lib/structured-data";
 
 interface Feature {
   icon: string;
@@ -43,8 +44,14 @@ export default function ForLandingTemplate({
   ctaLabel,
   longGuide,
 }: LandingProps) {
+  const faqJsonLd = faqSchema(faqs.map((f) => ({ question: f.q, answer: f.a })));
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <header className="nav">
         <Link className="logo" href="/">
           <span className="logo-mark" style={{ color: "#2563EB" }}>

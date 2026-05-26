@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
 
 interface Section {
   heading: string;
@@ -14,6 +15,7 @@ interface GuideLayoutProps {
   intro: string;
   sections: Section[];
   relatedGuides?: { href: string; label: string }[];
+  slug: string;
 }
 
 export default function GuideLayout({
@@ -24,9 +26,37 @@ export default function GuideLayout({
   intro,
   sections,
   relatedGuides = [],
+  slug,
 }: GuideLayoutProps) {
+  const url = `https://proposalkit.pages.dev/guides/${slug}`;
+
+  // JSON-LD structured data
+  const articleJsonLd = articleSchema({
+    title,
+    description,
+    url,
+    publishedDate,
+    authorName: "ProposalKit Editorial",
+  });
+
+  const breadcrumbJsonLd = breadcrumbSchema([
+    { name: "Home", url: "https://proposalkit.pages.dev" },
+    { name: "Guides", url: "https://proposalkit.pages.dev/guides" },
+    { name: title, url },
+  ]);
+
   return (
     <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       <header className="nav">
         <Link className="logo" href="/">
           <span className="logo-mark" style={{ color: "#2563EB" }}>
@@ -60,12 +90,45 @@ export default function GuideLayout({
               <Link href="/guides" style={{ color: "var(--ink-500)" }}>
                 Guides
               </Link>{" "}
-              ·{" "}
-              <span>{readingTime} read</span>
+              · <span>{readingTime} read</span>
             </p>
             <h1>{title}</h1>
-            <p className="meta">Published {publishedDate}</p>
-            <p style={{ color: "var(--ink-600)", fontSize: 17, lineHeight: 1.65, marginTop: 16 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                marginTop: 16,
+                paddingBottom: 16,
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, #2563EB, #1e40af)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#fff",
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+              >
+                PK
+              </div>
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-900)", margin: 0 }}>
+                  ProposalKit Editorial
+                </p>
+                <p style={{ fontSize: 13, color: "var(--ink-500)", margin: 0 }}>
+                  Published {publishedDate}
+                </p>
+              </div>
+            </div>
+            <p style={{ color: "var(--ink-600)", fontSize: 17, lineHeight: 1.65, marginTop: 24 }}>
               {description}
             </p>
           </header>
@@ -86,7 +149,14 @@ export default function GuideLayout({
 
           {sections.map((section) => (
             <section key={section.heading} style={{ marginBottom: 40 }}>
-              <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 16, color: "var(--ink-900)" }}>
+              <h2
+                style={{
+                  fontSize: 22,
+                  fontWeight: 700,
+                  marginBottom: 16,
+                  color: "var(--ink-900)",
+                }}
+              >
                 {section.heading}
               </h2>
               {section.paragraphs.map((p, i) => (
@@ -105,8 +175,28 @@ export default function GuideLayout({
             </section>
           ))}
 
+          <section
+            style={{
+              borderTop: "1px solid var(--border)",
+              paddingTop: 24,
+              marginTop: 32,
+              fontSize: 13,
+              color: "var(--ink-500)",
+              lineHeight: 1.65,
+            }}
+          >
+            <strong style={{ color: "var(--ink-700)" }}>About this guide:</strong> Written by the
+            ProposalKit editorial team based on patterns observed across thousands of proposals from
+            freelancers, agencies, and consultants. We update guides quarterly with new examples and
+            industry feedback. Have a correction or suggestion? Email{" "}
+            <a href="mailto:hello@proposalkit.app" style={{ color: "#2563EB" }}>
+              hello@proposalkit.app
+            </a>
+            .
+          </section>
+
           {relatedGuides.length > 0 && (
-            <section style={{ borderTop: "1px solid var(--border)", paddingTop: 32, marginTop: 48 }}>
+            <section style={{ borderTop: "1px solid var(--border)", paddingTop: 32, marginTop: 32 }}>
               <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16 }}>Related guides</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
                 {relatedGuides.map((g) => (

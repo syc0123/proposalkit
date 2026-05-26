@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function ProposalVsQuoteGuide() {
   return (
     <GuideLayout
+      slug="proposal-vs-quote-vs-estimate"
       title="Proposal vs. quote vs. estimate: which one to send (and why it matters)"
       description="Three documents, three different commercial outcomes. Learn what separates a proposal from a quote, when each is legally binding, and the mistake that costs small businesses thousands of dollars each year."
       publishedDate="April 2026"

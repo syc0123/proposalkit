@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 export default function PricingStrategiesGuide() {
   return (
     <GuideLayout
+      slug="proposal-pricing-strategies"
       title="Proposal pricing strategies that win at full fee"
       description="The pricing structure you use in a proposal influences not just how much you earn, but how fast the buyer commits and how often they push back on price. This guide walks through six pricing models — and the language patterns that make each one easier to accept."
       publishedDate="April 2026"

@@ -35,6 +35,22 @@ const GUIDES = [
     readingTime: "13 min",
     topics: ["Pricing", "Negotiation", "Value-based"],
   },
+  {
+    href: "/guides/common-proposal-mistakes",
+    title: "10 common proposal mistakes that cost you deals (and how to fix each one)",
+    description:
+      "A diagnostic checklist of the ten most frequent mistakes in business proposals — from vague scope to weak acceptance steps — and the specific fixes that turn a losing proposal into a winning one.",
+    readingTime: "12 min",
+    topics: ["Diagnostics", "Conversion", "Checklist"],
+  },
+  {
+    href: "/guides/proposal-follow-up-strategy",
+    title: "The proposal follow-up strategy that closes more deals",
+    description:
+      "Most proposals don't lose to better competitors. They lose to silence. A five-touch follow-up cadence with email templates and timing principles that close stalled deals.",
+    readingTime: "10 min",
+    topics: ["Follow-up", "Sales", "Cadence"],
+  },
 ];
 
 export default function GuidesIndexPage() {

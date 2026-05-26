@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 export default function HowToWriteProposalGuide() {
   return (
     <GuideLayout
+      slug="how-to-write-a-business-proposal"
       title="How to write a business proposal that actually wins clients"
       description="A practical, no-fluff guide to the eight-section structure used by closers across freelance, agency, and consulting work — with the language patterns and pricing logic that separate winning proposals from generic ones."
       publishedDate="April 2026"
