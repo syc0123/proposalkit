@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import { AUTHOR } from "@/lib/author";
 
 export const metadata: Metadata = {
   title: "About",
@@ -213,6 +214,52 @@ export default function AboutPage() {
                 </span>
               </div>
               <span className="pricing-price soon">Coming soon</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="about-section">
+          <span className="kicker">Who&apos;s behind it</span>
+          <h2>Built and maintained by one developer</h2>
+          <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginTop: 8 }}>
+            <div
+              style={{
+                flexShrink: 0,
+                width: 52,
+                height: 52,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #2563EB, #1e40af)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+                fontSize: 18,
+                fontWeight: 600,
+              }}
+            >
+              {AUTHOR.initials}
+            </div>
+            <div>
+              <p style={{ fontSize: 16, fontWeight: 600, color: "var(--ink-900)", margin: "0 0 6px" }}>
+                {AUTHOR.name}
+              </p>
+              <p style={{ fontSize: 15, color: "var(--ink-700)", lineHeight: 1.7, margin: "0 0 10px" }}>
+                {AUTHOR.bio} ProposalKit is an independent project — the proposal guides on this site
+                are written and maintained by hand, and updated as real users send feedback.
+              </p>
+              <p style={{ fontSize: 14, margin: 0 }}>
+                <a href={AUTHOR.portfolio} target="_blank" rel="noopener noreferrer" style={{ color: "#2563EB" }}>
+                  Portfolio
+                </a>
+                {" · "}
+                <a href={AUTHOR.github} target="_blank" rel="noopener noreferrer" style={{ color: "#2563EB" }}>
+                  GitHub
+                </a>
+                {" · "}
+                <Link href="/contact" style={{ color: "#2563EB" }}>
+                  Contact
+                </Link>
+              </p>
             </div>
           </div>
         </section>

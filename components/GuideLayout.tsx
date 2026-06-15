@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
+import { AUTHOR } from "@/lib/author";
 
 interface Section {
   heading: string;
@@ -36,7 +37,8 @@ export default function GuideLayout({
     description,
     url,
     publishedDate,
-    authorName: "ProposalKit Editorial",
+    authorName: AUTHOR.name,
+    authorUrl: AUTHOR.portfolio,
   });
 
   const breadcrumbJsonLd = breadcrumbSchema([
@@ -117,14 +119,16 @@ export default function GuideLayout({
                   fontWeight: 600,
                 }}
               >
-                PK
+                {AUTHOR.initials}
               </div>
               <div>
                 <p style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-900)", margin: 0 }}>
-                  ProposalKit Editorial
+                  <a href={AUTHOR.portfolio} target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink-900)" }}>
+                    {AUTHOR.name}
+                  </a>
                 </p>
                 <p style={{ fontSize: 13, color: "var(--ink-500)", margin: 0 }}>
-                  Published {publishedDate}
+                  {AUTHOR.role} · Published {publishedDate}
                 </p>
               </div>
             </div>
@@ -179,19 +183,50 @@ export default function GuideLayout({
             style={{
               borderTop: "1px solid var(--border)",
               paddingTop: 24,
-              marginTop: 32,
-              fontSize: 13,
-              color: "var(--ink-500)",
-              lineHeight: 1.65,
+              marginTop: 40,
+              display: "flex",
+              gap: 16,
+              alignItems: "flex-start",
             }}
           >
-            <strong style={{ color: "var(--ink-700)" }}>About this guide:</strong> Part of the
-            ProposalKit guide series on writing proposals that win clients. Have a correction, a
-            suggestion, or a real-world example we should include?{" "}
-            <Link href="/contact" style={{ color: "#2563EB" }}>
-              Get in touch
-            </Link>{" "}
-            — we revise these guides as we hear from people who use them.
+            <div
+              style={{
+                flexShrink: 0,
+                width: 48,
+                height: 48,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #2563EB, #1e40af)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+                fontSize: 16,
+                fontWeight: 600,
+              }}
+            >
+              {AUTHOR.initials}
+            </div>
+            <div>
+              <p style={{ fontSize: 15, fontWeight: 600, color: "var(--ink-900)", margin: "0 0 4px" }}>
+                {AUTHOR.name}
+              </p>
+              <p style={{ fontSize: 14, color: "var(--ink-600)", lineHeight: 1.6, margin: "0 0 8px" }}>
+                {AUTHOR.bio}
+              </p>
+              <p style={{ fontSize: 13, margin: 0 }}>
+                <a href={AUTHOR.portfolio} target="_blank" rel="noopener noreferrer" style={{ color: "#2563EB" }}>
+                  Portfolio
+                </a>
+                {" · "}
+                <a href={AUTHOR.github} target="_blank" rel="noopener noreferrer" style={{ color: "#2563EB" }}>
+                  GitHub
+                </a>
+                {" · "}
+                <Link href="/contact" style={{ color: "#2563EB" }}>
+                  Contact
+                </Link>
+              </p>
+            </div>
           </section>
 
           {relatedGuides.length > 0 && (

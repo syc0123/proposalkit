@@ -8,6 +8,7 @@ interface ArticleSchemaInput {
   publishedDate: string;
   modifiedDate?: string;
   authorName: string;
+  authorUrl?: string;
 }
 
 export function articleSchema(input: ArticleSchemaInput): Record<string, unknown> {
@@ -20,9 +21,9 @@ export function articleSchema(input: ArticleSchemaInput): Record<string, unknown
     datePublished: input.publishedDate,
     dateModified: input.modifiedDate ?? input.publishedDate,
     author: {
-      "@type": "Organization",
+      "@type": "Person",
       name: input.authorName,
-      url: "https://proposalkit.pages.dev",
+      url: input.authorUrl ?? "https://proposalkit.pages.dev",
     },
     publisher: {
       "@type": "Organization",

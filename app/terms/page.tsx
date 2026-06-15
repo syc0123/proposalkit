@@ -160,8 +160,7 @@ export default function TermsPage() {
               </li>
               <li>
                 Probe the Service for security vulnerabilities outside the coordinated disclosure
-                process described at{" "}
-                <a href="mailto:security@proposalkit.app">security@proposalkit.app</a>.
+                process described on our <Link href="/contact">contact page</Link>.
               </li>
               <li>
                 Use the Service to generate content that is illegal, harmful, abusive, harassing,
@@ -288,9 +287,8 @@ export default function TermsPage() {
             <h2>12. Termination</h2>
             <p>
               You may stop using the Service at any time. You may request deletion of your account
-              by emailing{" "}
-              <a href="mailto:privacy@proposalkit.app">privacy@proposalkit.app</a>; we will process
-              verified requests within 30 days.
+              through our <Link href="/contact">contact page</Link>; we will process verified
+              requests within 30 days.
             </p>
             <p>
               We may suspend or terminate your access to the Service at any time, with or without
@@ -345,8 +343,7 @@ export default function TermsPage() {
           <section>
             <h2>16. Contact</h2>
             <p>
-              Questions about these Terms? Email{" "}
-              <a href="mailto:hello@proposalkit.app">hello@proposalkit.app</a> or see our{" "}
+              Questions about these Terms? Reach us through our{" "}
               <Link href="/contact">contact page</Link>.
             </p>
           </section>

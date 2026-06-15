@@ -1,13 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import { AUTHOR } from "@/lib/author";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with the ProposalKit team. Send feedback, report a bug, request a feature, or ask a question about your account.",
+    "Get in touch about ProposalKit. Send feedback, report a bug, request a feature, or ask a question about your account.",
 };
 
 export default function ContactPage() {
@@ -57,10 +58,10 @@ export default function ContactPage() {
               marginBottom: 24,
             }}
           >
-            ProposalKit is built and maintained by a small team. We don&apos;t have a phone line or a
-            help desk staffed by tier-one support agents — what we do have is direct email access to
-            the people actually building the product. If you write us, you&apos;ll hear back from
-            someone who can actually fix the issue or change the roadmap.
+            ProposalKit is built and maintained by one developer, {AUTHOR.name}. There&apos;s no
+            phone line or tiered help desk — what you get is a direct line to the person who actually
+            builds the product. Messages come straight to my inbox, and you&apos;ll hear back from
+            someone who can genuinely fix the issue or change the roadmap.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, marginTop: 32 }}>
@@ -94,12 +95,13 @@ export default function ContactPage() {
             >
               <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>General inquiries</h3>
               <p style={{ fontSize: 14, color: "var(--ink-600)" }}>
-                Email{" "}
-                <a href="mailto:hello@proposalkit.app" style={{ color: "#2563EB" }}>
-                  hello@proposalkit.app
-                </a>{" "}
-                — typical response time is 1–2 business days. Use this for product questions,
-                partnership inquiries, or anything that doesn&apos;t fit the categories below.
+                Product questions, partnership ideas, or anything else — use the Feedback button and
+                pick <em>General Feedback</em> or <em>Other</em>. Typical response is 1–2 business
+                days. You can also reach me through my{" "}
+                <a href={AUTHOR.portfolio} target="_blank" rel="noopener noreferrer" style={{ color: "#2563EB" }}>
+                  portfolio site
+                </a>
+                .
               </p>
             </div>
 
@@ -113,13 +115,10 @@ export default function ContactPage() {
             >
               <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>Privacy and data requests</h3>
               <p style={{ fontSize: 14, color: "var(--ink-600)" }}>
-                Email{" "}
-                <a href="mailto:privacy@proposalkit.app" style={{ color: "#2563EB" }}>
-                  privacy@proposalkit.app
-                </a>{" "}
-                — for data deletion requests, GDPR/CCPA inquiries, or questions about how we handle
-                your information. We honor verified deletion requests within 30 days as outlined in
-                our{" "}
+                For data deletion requests, GDPR/CCPA inquiries, or questions about how your
+                information is handled, use the Feedback button and choose <em>Other</em> (mention
+                &quot;data request&quot;). Verified deletion requests are honored within 30 days as
+                outlined in the{" "}
                 <Link href="/privacy" style={{ color: "#2563EB" }}>
                   Privacy Policy
                 </Link>
@@ -137,13 +136,9 @@ export default function ContactPage() {
             >
               <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>Security disclosures</h3>
               <p style={{ fontSize: 14, color: "var(--ink-600)" }}>
-                If you&apos;ve discovered a security vulnerability, please email{" "}
-                <a href="mailto:security@proposalkit.app" style={{ color: "#2563EB" }}>
-                  security@proposalkit.app
-                </a>{" "}
-                with details. We acknowledge receipt within 48 hours and aim to resolve verified
-                issues within 14 days. We do not currently offer a bug bounty, but we credit
-                researchers in our public security acknowledgments page upon resolution.
+                Found a security vulnerability? Use the Feedback button, mark it{" "}
+                <em>Bug Report</em>, and include the details and reproduction steps. I review
+                security reports first and will acknowledge receipt within a few days.
               </p>
             </div>
           </div>
@@ -172,12 +167,9 @@ export default function ContactPage() {
               How do I delete my account?
             </h3>
             <p style={{ fontSize: 14, color: "var(--ink-600)", lineHeight: 1.65 }}>
-              Email{" "}
-              <a href="mailto:privacy@proposalkit.app" style={{ color: "#2563EB" }}>
-                privacy@proposalkit.app
-              </a>{" "}
-              from the address associated with your Google sign-in. We verify the request and remove
-              your data within 30 days. Self-service account deletion is on the roadmap.
+              Use the Feedback button (choose <em>Other</em>) and mention the email address
+              associated with your Google sign-in. The request is verified and your data removed
+              within 30 days. Self-service account deletion is on the roadmap.
             </p>
           </div>
           <div style={{ marginBottom: 16 }}>

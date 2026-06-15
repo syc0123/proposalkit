@@ -309,10 +309,10 @@ export default function PrivacyPage() {
               </li>
             </ul>
             <p>
-              To exercise any of these rights, email{" "}
-              <a href="mailto:privacy@proposalkit.app">privacy@proposalkit.app</a> from the email
-              address associated with your account. We will verify your identity before fulfilling
-              the request and will respond within 30 days.
+              To exercise any of these rights, reach us through the{" "}
+              <Link href="/contact">contact page</Link> (the in-app Feedback button goes straight to
+              our inbox) and reference the email address associated with your account. We will verify
+              your identity before fulfilling the request and will respond within 30 days.
             </p>
           </section>
 
@@ -365,10 +365,9 @@ export default function PrivacyPage() {
             <h2>11. Contact Us</h2>
             <p>
               For privacy-specific questions, data requests, or to exercise your rights under this
-              policy, email{" "}
-              <a href="mailto:privacy@proposalkit.app">privacy@proposalkit.app</a>. For general
-              support questions, see our <Link href="/contact">contact page</Link>. We aim to
-              respond to all privacy inquiries within 5 business days.
+              policy, reach us through the <Link href="/contact">contact page</Link> — the in-app
+              Feedback button delivers straight to our inbox. We aim to respond to all privacy
+              inquiries within 5 business days.
             </p>
           </section>
         </article>
