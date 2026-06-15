@@ -49,7 +49,7 @@ export default function ContractorsPage() {
       longGuide={{
         title: "How to write a contractor proposal that wins jobs",
         intro:
-          "After ten years estimating residential and small commercial work, I've learned one thing: the contractor who sends the clearest proposal usually gets the job — even when their price isn't the lowest. Homeowners and property managers are making a decision based on risk. They don't know if you'll show up, finish on time, or charge them for surprises. A well-structured proposal removes that uncertainty. This guide walks through every section a contractor proposal should contain and why each one matters.",
+          "Among contractors, a consistent pattern holds: the one who sends the clearest proposal often gets the job — even when their price isn't the lowest. Homeowners and property managers are making a decision based on risk. They don't know if you'll show up, finish on time, or charge them for surprises. A well-structured proposal removes that uncertainty. This guide walks through every section a contractor proposal should contain and why each one matters.",
         sections: [
           {
             heading: "1. Start with the project address and a one-paragraph summary",
@@ -90,14 +90,14 @@ export default function ContractorsPage() {
             heading: "6. Stand behind your work with a written warranty",
             body: [
               "Most states require a one-year workmanship warranty on residential work, but it's worth stating it explicitly. Sample language: 'ProposalKit Contracting warrants all labor for 12 months from substantial completion. Manufacturer warranties on installed products will be transferred to the homeowner upon final payment. This warranty does not cover damage from misuse, neglect, normal wear, or work performed by other contractors after completion.' Clients respond well to seeing this in writing — it signals confidence.",
-              "If you offer extended warranties or maintenance contracts (common for roofers and HVAC), mention them here with a one-sentence pitch. Don't push hard, just plant the seed: 'Ask about our 5-year roofing maintenance plan, which includes annual inspections and priority repair scheduling.' Many contractors capture 15–20% of additional revenue this way.",
+              "If you offer extended warranties or maintenance contracts (common for roofers and HVAC), mention them here with a one-sentence pitch. Don't push hard, just plant the seed: 'Ask about our 5-year roofing maintenance plan, which includes annual inspections and priority repair scheduling.' Offering plans like this can turn a one-time job into recurring revenue.",
             ],
           },
           {
             heading: "7. End with a clear 'how to accept' section",
             body: [
-              "Don't make the client guess what to do next. End every proposal with: 'To accept this proposal, sign and date below, then return one copy via email to [your email] or in person. Upon receipt of signed agreement and 10% deposit, work will be scheduled within 7–14 calendar days.' A specific call-to-action increases your acceptance rate measurably.",
-              "Include space for the client's printed name, signature, date, and a checkbox confirming they've read and agreed to the scope. If you're using ProposalKit's output, the generated proposal includes this signature block by default — you just need to print or PDF it. Most homeowners sign within 48 hours of receiving a well-structured proposal, especially if you're the second or third bid they've reviewed.",
+              "Don't make the client guess what to do next. End every proposal with: 'To accept this proposal, sign and date below, then return one copy via email to [your email] or in person. Upon receipt of signed agreement and 10% deposit, work will be scheduled within 7–14 calendar days.' A specific call-to-action removes friction by telling the client exactly how to move forward.",
+              "Include space for the client's printed name, signature, date, and a checkbox confirming they've read and agreed to the scope. If you're using ProposalKit's output, the generated proposal includes this signature block by default — you just need to print or PDF it. A clear, well-structured proposal makes it easy for a homeowner to decide quickly, especially if you're the second or third bid they've reviewed.",
             ],
           },
         ],
@@ -105,7 +105,7 @@ export default function ContractorsPage() {
       faqs={[
         {
           q: "Do contractors need written proposals?",
-          a: "Yes — most states legally require a written contract for residential work over a certain threshold (often $500 or $1,000), and even where it's not legally required, a written proposal is the single best tool for preventing disputes. It documents what was agreed, sets expectations on scope and timeline, and makes you look measurably more professional than competitors who only give verbal quotes. Many state contractor licensing boards also require specific disclosures (cancellation rights, mechanic's lien notices) that you can only deliver in writing. Skipping the written proposal puts your license and your payment at risk.",
+          a: "Yes — most states legally require a written contract for residential work over a certain threshold (often $500 or $1,000), and even where it's not legally required, a written proposal is the single best tool for preventing disputes. It documents what was agreed, sets expectations on scope and timeline, and makes you look more professional than competitors who only give verbal quotes. Many state contractor licensing boards also require specific disclosures (cancellation rights, mechanic's lien notices) that you can only deliver in writing. Skipping the written proposal puts your license and your payment at risk.",
         },
         {
           q: "What's the difference between a proposal and an estimate?",

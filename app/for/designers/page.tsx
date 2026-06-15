@@ -49,7 +49,7 @@ export default function DesignersPage() {
       longGuide={{
         title: "The web design and development proposal that prevents scope creep",
         intro:
-          "Every freelance designer and developer I know has had the same nightmare project: a friendly client, a vague handshake agreement, and a deliverable that kept growing until the hourly rate dropped below minimum wage. The fix isn't more meetings or stronger willpower — it's a written proposal that defines the project as a finite set of deliverables before the work begins. This guide walks through the seven sections every design or development proposal should contain, and the specific language that converts difficult conversations into clean signed agreements.",
+          "Most freelance designers and developers have faced the same nightmare project: a friendly client, a vague handshake agreement, and a deliverable that kept growing until the hourly rate dropped below minimum wage. The fix isn't more meetings or stronger willpower — it's a written proposal that defines the project as a finite set of deliverables before the work begins. This guide walks through the seven sections every design or development proposal should contain, and the specific language that converts difficult conversations into clean signed agreements.",
         sections: [
           {
             heading: "1. Open with a problem statement, not a feature list",
@@ -89,7 +89,7 @@ export default function DesignersPage() {
           {
             heading: "6. Price the project as an investment, not a cost",
             body: [
-              "Reframe how you present the number. 'Total cost: $18,000' sounds like an expense. 'Total investment: $18,000, expected to generate $X in additional annual revenue based on a 40% lift in conversion rate' sounds like a business case. Even if you can't promise specific ROI numbers, leading with 'investment' signals strategic thinking. Many designers report a 15–25% increase in proposal acceptance just from this language change.",
+              "Reframe how you present the number. 'Total cost: $18,000' sounds like an expense. 'Total investment: $18,000, framed against the additional revenue a faster, higher-converting site can generate' sounds like a business case. Even if you can't promise specific ROI numbers, leading with 'investment' signals strategic thinking. Framing the price as an investment rather than a cost shifts the conversation from minimizing an expense to evaluating value — which tends to make the number easier for a client to approve.",
               "Show a breakdown by phase: Discovery $2,400 | Design $5,600 | Development $8,000 | Launch $1,200 | Post-launch $800. Clients comparing your proposal to a competitor's all-in-one number will see the structure and reason that you've thought about this more carefully. Itemization is also useful if the client tries to cut scope — you can offer to drop a phase rather than discount the total.",
             ],
           },

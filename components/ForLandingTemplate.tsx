@@ -26,7 +26,7 @@ interface LandingProps {
   whatIncludes: string[];
   faqs: Faq[];
   ctaLabel: string;
-  // @AX:NOTE: longGuide is the unique long-form content for AdSense content-depth requirements
+  // Long-form, profession-specific guide rendered below the proposal structure section
   longGuide: {
     title: string;
     intro: string;
@@ -120,7 +120,7 @@ export default function ForLandingTemplate({
           </div>
         </section>
 
-        {/* Long-form guide — substantial unique content for SEO and AdSense */}
+        {/* Long-form, profession-specific guide */}
         <section className="about-section">
           <span className="kicker">Complete guide</span>
           <h2>{longGuide.title}</h2>

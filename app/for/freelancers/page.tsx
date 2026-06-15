@@ -83,14 +83,14 @@ export default function FreelancersPage() {
             heading: "5. Set a realistic timeline with explicit dependencies",
             body: [
               "Project delays in freelance work are almost always caused by the client side: late asset delivery, slow approvals, missing brand guidelines. The proposal should make these dependencies explicit and tie the timeline to them. 'Estimated completion: 18 working days from kickoff, assuming brand assets and final product copy are delivered within 3 business days of signing. Each day of delay in asset delivery extends the completion date by one working day.' Now you have a documented basis to push back when scope-by-scope-creep starts.",
-              "Build in a buffer. If you genuinely think the work will take 14 days, quote 18. Quoting your best-case timeline and then missing it by a few days hurts your reputation more than quoting a slightly longer timeline and finishing early. Most experienced freelancers quote 25–40% more time than their internal estimate, and the gap is invisible to clients because they expect a buffer anyway.",
+              "Build in a buffer. If you genuinely think the work will take 14 days, quote 18. Quoting your best-case timeline and then missing it by a few days hurts your reputation more than quoting a slightly longer timeline and finishing early. A common habit among experienced freelancers is to pad the internal estimate by a meaningful margin, and the gap is invisible to clients because they expect a buffer anyway.",
             ],
           },
           {
             heading: "6. Address the 'why you' question with one short paragraph",
             body: [
-              "Don't include a multi-page 'About me' section. Senior freelancers earn their fees by demonstrating thinking, not by listing accomplishments. One paragraph of 3–5 sentences is enough: 'I've been doing conversion-focused product page work for Shopify and Shopify Plus brands since 2019. The pattern I see most often is teams treating the product page as a static brochure when it should be the conversion engine. The approach I use combines funnel data, qualitative session reviews, and a small set of proven layout patterns I've refined across 40+ client engagements.' That paragraph beats a portfolio link.",
-              "If the client asked for portfolio samples, include 2–3 links inline rather than a separate document. Each link should have one sentence of context: 'Recent comparable work: [Brand A product page redesign — 34% lift in PDP conversion in 60 days].' Specificity signals confidence; bulk linking signals desperation.",
+              "Don't include a multi-page 'About me' section. Senior freelancers earn their fees by demonstrating thinking, not by listing accomplishments. One paragraph of 3–5 sentences is enough: 'I focus on conversion-focused product page work for Shopify and Shopify Plus brands. A common pattern is teams treating the product page as a static brochure when it should be the conversion engine. The approach combines funnel data, qualitative session reviews, and a small set of proven layout patterns.' That paragraph beats a portfolio link.",
+              "If the client asked for portfolio samples, include 2–3 links inline rather than a separate document. Each link should have one sentence of context naming the specific outcome you delivered — for example, the conversion metric a redesign moved and over what window. Specificity signals confidence; bulk linking signals desperation.",
             ],
           },
           {

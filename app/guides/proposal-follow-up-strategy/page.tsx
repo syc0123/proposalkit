@@ -22,8 +22,8 @@ export default function FollowUpGuide() {
         {
           heading: "Why follow-ups close more deals than rewrites",
           paragraphs: [
-            "When a proposal goes unanswered, most service providers assume the buyer chose someone else. The data says otherwise. In a typical pipeline, roughly 40–60% of unanswered proposals are still in active consideration two weeks after sending. The buyer is busy, distracted, dealing with internal politics, waiting for a budget approval, or simply lost the email in a crowded inbox.",
-            "A well-timed follow-up converts these stalled deals at remarkably high rates. Service businesses that systematize their follow-up cadence consistently report 20–40% lift in proposal acceptance compared to those who send and wait. The follow-up isn't pushy; it's professional. Buyers expect it from serious vendors and view its absence as a signal that the vendor isn't fully committed.",
+            "When a proposal goes unanswered, most service providers assume the buyer chose someone else. More often, the opposite is true. A large share of unanswered proposals are still in active consideration weeks after sending. The buyer is busy, distracted, dealing with internal politics, waiting for a budget approval, or simply lost the email in a crowded inbox.",
+            "A well-timed follow-up converts these stalled deals far more often than sending and waiting. Systematizing a follow-up cadence tends to lift proposal acceptance because deals that would otherwise go cold from neglect stay alive. The follow-up isn't pushy; it's professional. Buyers expect it from serious vendors and view its absence as a signal that the vendor isn't fully committed.",
             "The fundamental shift is treating follow-up as part of the work, not as something separate from it. The proposal isn't done when you click send. It's done when the buyer either accepts or explicitly declines. Until then, the proposal is an open loop that needs gentle, structured maintenance.",
           ],
         },

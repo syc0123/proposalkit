@@ -22,7 +22,7 @@ export default function HowToWriteProposalGuide() {
       description="A practical, no-fluff guide to the eight-section structure used by closers across freelance, agency, and consulting work — with the language patterns and pricing logic that separate winning proposals from generic ones."
       publishedDate="April 2026"
       readingTime="14 min"
-      intro="Most business proposals lose for the same three reasons: they open with the wrong information, they describe activities instead of outcomes, and they end with a vague call to action. This guide walks through the eight sections every proposal should contain, with specific language examples drawn from proposals that have closed seven-figure deals in marketing, consulting, design, and skilled trades."
+      intro="Most business proposals lose for the same three reasons: they open with the wrong information, they describe activities instead of outcomes, and they end with a vague call to action. This guide walks through the eight sections every proposal should contain, with specific language examples you can adapt for marketing, consulting, design, and skilled trades."
       sections={[
         {
           heading: "What a business proposal actually is (and isn't)",
@@ -83,7 +83,7 @@ export default function HowToWriteProposalGuide() {
           heading: "Section 7: Investment (pricing)",
           paragraphs: [
             "Lead with the total before breaking down components. 'Total investment for the brand refresh: $42,000.' Putting the total first respects the reader's time and avoids the awkward 'so what's the total?' moment. Following the total, break it down by phase or deliverable so the reader can see how the number was built.",
-            "Use the word 'investment' rather than 'cost' or 'price.' This is not corporate fluff; it's a real psychological signal. 'Cost' implies expense to be minimized. 'Investment' implies value to be evaluated. Many proposals report 15–25% higher acceptance rates after this single word change.",
+            "Use the word 'investment' rather than 'cost' or 'price.' This is not corporate fluff; it's a real psychological signal. 'Cost' implies expense to be minimized. 'Investment' implies value to be evaluated. Framing the price as an investment rather than a cost shifts the conversation from minimizing an expense to evaluating value.",
             "Specify the payment schedule explicitly: 'Payment schedule: 33% retainer due upon signed agreement, 33% due upon delivery of positioning brief, 34% due upon delivery of final brand system.' Tying payments to deliverables protects both sides and creates the structured checkpoints that distinguish a real engagement from an open-ended project.",
             "If you offer multiple pricing options (a 'good/better/best' menu), present them as three columns, with the recommended option in the middle and visually highlighted. Most buyers will choose the middle option — it's a well-documented behavioral pattern. Use this consciously: design your middle option to be the engagement you actually want to deliver.",
           ],

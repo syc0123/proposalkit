@@ -71,7 +71,7 @@ export default function PricingStrategiesGuide() {
           heading: "How to present pricing in a proposal",
           paragraphs: [
             "Whatever pricing model you choose, the presentation matters as much as the structure. Lead with the total — buyers want to know the number before they read the breakdown, and burying it makes you look defensive. 'Total investment: $42,000' should be the first line of the pricing section.",
-            "Use the word 'investment' rather than 'cost' or 'price.' This is not corporate fluff. 'Cost' implies expense to be minimized. 'Investment' implies value to be evaluated. The word change consistently produces 15–25% higher acceptance rates in A/B testing across multiple service categories.",
+            "Use the word 'investment' rather than 'cost' or 'price.' This is not corporate fluff. 'Cost' implies expense to be minimized. 'Investment' implies value to be evaluated. Framing the price as an investment shifts the buyer's mindset from minimizing an expense to weighing the return, which makes a full-fee proposal easier to accept.",
             "Show the breakdown by phase or deliverable so the buyer can see how the number was built. 'Phase 1 Discovery: $8,000. Phase 2 Strategy: $16,000. Phase 3 Implementation Planning: $12,000. Phase 4 Executive Workshop: $4,000. Subtotal: $40,000. Project management included.' Itemization makes the number defensible and gives you flexibility to negotiate by dropping a phase rather than discounting the total.",
             "End the pricing section with the payment schedule. 'Payment schedule: 30% retainer due upon signed agreement, 30% due at Phase 2 kickoff, 30% due at Phase 3 kickoff, 10% due at final deliverable acceptance.' Specific schedules protect both sides and avoid the 'when do I actually invoice?' confusion that delays cash flow.",
           ],
@@ -81,7 +81,7 @@ export default function PricingStrategiesGuide() {
           paragraphs: [
             "If a buyer asks for a discount, your first instinct should be 'what's coming out of scope?' rather than 'how low can I go?' Discounting the fee without removing scope teaches the client that your prices are arbitrary — and once that lesson is learned, every future engagement starts with negotiation.",
             "The right response to 'can you do this for $30,000 instead of $40,000?' is 'we can do that by removing Phase 4 from the scope, which keeps the same hourly investment from our team while delivering 75% of the original outcome.' Now you've held your effective rate, scoped down honestly, and let the client choose the trade-off.",
-            "A useful frame: never reduce your fee without removing scope, and never add scope without raising your fee. Holding this rule across every engagement is the single highest-leverage discipline in service business pricing. The freelancers and small agencies who hold this rule consistently earn 30–50% more per engagement than peers who discount under pressure.",
+            "A useful frame: never reduce your fee without removing scope, and never add scope without raising your fee. Holding this rule across every engagement is the single highest-leverage discipline in service business pricing. Freelancers and small agencies who hold this rule protect their effective rate over time, while those who discount under pressure tend to erode it engagement by engagement.",
           ],
         },
         {

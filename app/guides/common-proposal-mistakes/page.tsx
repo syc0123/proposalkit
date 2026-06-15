@@ -17,7 +17,7 @@ export default function CommonMistakesGuide() {
       description="A diagnostic checklist of the ten most frequent mistakes in business proposals from freelancers, agencies, and consultants — and the specific fixes that turn a losing proposal into a winning one."
       publishedDate="April 2026"
       readingTime="12 min"
-      intro="Most lost proposals share a small number of structural problems. After reviewing thousands of proposals submitted by freelancers and small business owners across multiple industries, the same patterns appear over and over. This guide diagnoses the ten most common mistakes — many of which are invisible to the writer because they feel professional from inside the document — and provides specific fixes for each. If your proposal acceptance rate is under 40%, at least three of these are likely contributing."
+      intro="Most lost proposals share a small number of structural problems. Across freelancers and small business owners in many industries, the same patterns tend to appear over and over. This guide diagnoses the ten most common mistakes — many of which are invisible to the writer because they feel professional from inside the document — and provides specific fixes for each. If your proposals are losing more often than you'd like, there's a good chance several of these are contributing."
       sections={[
         {
           heading: "Mistake 1: Leading with your company history",
@@ -56,7 +56,7 @@ export default function CommonMistakesGuide() {
           paragraphs: [
             "Quoting a specific finish date ('Project complete by June 14') creates a single point of failure. The moment a client-side delay, supply chain issue, or weather event pushes things out, you're explaining why you missed a date you committed to.",
             "The fix: quote a sequence of working days from kickoff. 'Estimated 18 working days from kickoff, assuming brand assets are delivered within 3 business days of signing.' Sequences are honest, flexible, and tied to dependencies that surface the actual delay causes.",
-            "Add a buffer. If you genuinely think the work will take 14 days, quote 18. Quoting your best-case timeline and missing it by a few days hurts your reputation more than quoting a slightly longer timeline and finishing on the early side. Most experienced freelancers quote 25–40% more time than their internal estimate, and the buffer is invisible to clients because they expect one anyway.",
+            "Add a buffer. If you genuinely think the work will take 14 days, quote 18. Quoting your best-case timeline and missing it by a few days hurts your reputation more than quoting a slightly longer timeline and finishing on the early side. Building a margin into your estimate is standard practice, and the buffer is largely invisible to clients because they expect one anyway.",
           ],
         },
         {
@@ -80,7 +80,7 @@ export default function CommonMistakesGuide() {
           paragraphs: [
             "Most proposals end with some variation of 'Looking forward to hearing your thoughts!' or 'Let me know if you have any questions.' Neither is a next step. The buyer reads the proposal, agrees with it, and then has no clear path to action — so they procrastinate, and the deal cools.",
             "The fix: end with a specific, frictionless acceptance procedure. 'To accept this proposal, reply to this email confirming acceptance. Upon receipt, I'll send a contract for e-signature via DocuSign and invoice for the 40% deposit ($3,200). Work will begin within 5 business days of signed contract and deposit.' Specificity converts.",
-            "Include exact dollar amounts so the client doesn't have to do math. Include the next step on your end so they know what happens after they say yes. Include a timeline expectation so they understand the commitment. Acceptance steps that are clear, specific, and complete consistently produce 20–30% higher conversion rates than vague closings.",
+            "Include exact dollar amounts so the client doesn't have to do math. Include the next step on your end so they know what happens after they say yes. Include a timeline expectation so they understand the commitment. An acceptance step that is clear, specific, and complete removes the friction that lets an agreeable buyer drift away — it converts intent into action while the decision is still warm.",
           ],
         },
         {
@@ -88,7 +88,7 @@ export default function CommonMistakesGuide() {
           paragraphs: [
             "Without an expiration date, your proposal stays valid forever. The price you quoted in March is still the price the buyer expects in October when they finally circle back. Materials costs have changed, your hourly capacity has changed, your business priorities have changed — but your quote hasn't.",
             "The fix: add an expiration paragraph. 'This proposal is valid through May 14, 2026. Pricing and availability are subject to change after that date.' Two to four weeks is reasonable for most engagements. Longer expirations are appropriate for large enterprise deals where the buyer's procurement process takes months.",
-            "Expiration dates also serve as a gentle commitment device. Serious buyers move forward; tire-kickers self-select out. You're not pressuring anyone — you're being honest that your business circumstances can change. Most buyers who would have signed eventually still sign within the window. The 10–20% who would have come back six months later are usually the buyers you're better off not signing anyway.",
+            "Expiration dates also serve as a gentle commitment device. Serious buyers move forward; tire-kickers self-select out. You're not pressuring anyone — you're being honest that your business circumstances can change. Most buyers who would have signed eventually still sign within the window. The small share who would only have circled back many months later are often the buyers you're better off not signing anyway.",
           ],
         },
         {

@@ -98,7 +98,7 @@ export default function ConsultantsPage() {
             heading: "7. End with a clear next step and expiration",
             body: [
               "Don't end with 'Let me know what you think.' End with: 'To accept this proposal, please confirm acceptance by email and we will send a master services agreement for e-signature. Upon receipt of signed agreement and initial 33% retainer, Phase 1 Diagnostic will commence within 5 business days.' Specificity converts. Include the exact dollar amount of the retainer so the client doesn't have to do math.",
-              "Add a proposal expiration: 'This proposal is valid through [30 days from issue]. Pricing and availability are subject to change after that date.' This is not a high-pressure tactic. It's a way to keep your pipeline moving and to surface the 10–20% of buyers who would otherwise come back six months later asking for the same price. It also signals to serious buyers that your time is in demand.",
+              "Add a proposal expiration: 'This proposal is valid through [30 days from issue]. Pricing and availability are subject to change after that date.' This is not a high-pressure tactic. It's a way to keep your pipeline moving and to surface the buyers who would otherwise come back months later asking for the same price. It also signals to serious buyers that your time is in demand.",
             ],
           },
         ],
@@ -110,7 +110,7 @@ export default function ConsultantsPage() {
         },
         {
           q: "How do I price consulting services in a proposal?",
-          a: "Price by value or fixed fee, not by hourly rate. The moment a client sees an hourly rate, they begin calculating whether the work 'should really take that long' — a conversation you cannot win. Calculate the fee based on the value the engagement will deliver: if your recommendations are expected to save the client $500k annually, a $50k fee is a 10x return and an easy approval. Present the total fee as a single number, broken into 3–4 phase milestones. If asked about hours, redirect: 'We price by outcome, not by hour, because hourly pricing creates the wrong incentive — to drag work out. You're paying for the result.' This single reframe consistently produces 20–40% higher accepted fees.",
+          a: "Price by value or fixed fee, not by hourly rate. The moment a client sees an hourly rate, they begin calculating whether the work 'should really take that long' — a conversation you cannot win. Calculate the fee based on the value the engagement will deliver: if your recommendations are expected to save the client $500k annually, a $50k fee is a 10x return and an easy approval. Present the total fee as a single number, broken into 3–4 phase milestones. If asked about hours, redirect: 'We price by outcome, not by hour, because hourly pricing creates the wrong incentive — to drag work out. You're paying for the result.' This reframe shifts the conversation away from auditing your hours and toward the value the client receives, which is often where higher fees become easier to justify.",
         },
         {
           q: "Should I send a proposal before or after a discovery call?",
@@ -118,7 +118,7 @@ export default function ConsultantsPage() {
         },
         {
           q: "How long should a consulting proposal be?",
-          a: "2–4 pages for most engagements, 5–8 pages for large or complex engagements involving multiple workstreams. Decision-makers are time-constrained — a concise, focused proposal that directly addresses their problem performs measurably better than a 30-page document filled with frameworks and methodology diagrams. The proposal should be long enough to demonstrate that you understood the problem and have a clear approach, and short enough that the buyer can read it in 10–15 minutes and forward it to their CFO with a one-line note. If you're tempted to add more pages to justify the fee, the underlying issue is usually that you haven't yet articulated the value clearly enough to justify the fee on its own.",
+          a: "2–4 pages for most engagements, 5–8 pages for large or complex engagements involving multiple workstreams. Decision-makers are time-constrained — a concise, focused proposal that directly addresses their problem tends to land better than a 30-page document filled with frameworks and methodology diagrams. The proposal should be long enough to demonstrate that you understood the problem and have a clear approach, and short enough that the buyer can read it in 10–15 minutes and forward it to their CFO with a one-line note. If you're tempted to add more pages to justify the fee, the underlying issue is usually that you haven't yet articulated the value clearly enough to justify the fee on its own.",
         },
       ]}
       ctaLabel="Generate Your Consulting Proposal — Free"

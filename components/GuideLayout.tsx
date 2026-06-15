@@ -185,14 +185,13 @@ export default function GuideLayout({
               lineHeight: 1.65,
             }}
           >
-            <strong style={{ color: "var(--ink-700)" }}>About this guide:</strong> Written by the
-            ProposalKit editorial team based on patterns observed across thousands of proposals from
-            freelancers, agencies, and consultants. We update guides quarterly with new examples and
-            industry feedback. Have a correction or suggestion? Email{" "}
-            <a href="mailto:hello@proposalkit.app" style={{ color: "#2563EB" }}>
-              hello@proposalkit.app
-            </a>
-            .
+            <strong style={{ color: "var(--ink-700)" }}>About this guide:</strong> Part of the
+            ProposalKit guide series on writing proposals that win clients. Have a correction, a
+            suggestion, or a real-world example we should include?{" "}
+            <Link href="/contact" style={{ color: "#2563EB" }}>
+              Get in touch
+            </Link>{" "}
+            — we revise these guides as we hear from people who use them.
           </section>
 
           {relatedGuides.length > 0 && (
