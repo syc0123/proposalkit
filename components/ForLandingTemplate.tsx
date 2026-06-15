@@ -147,6 +147,20 @@ export default function ForLandingTemplate({
               ))}
             </div>
           ))}
+          <p
+            style={{
+              fontSize: 13,
+              color: "var(--ink-500)",
+              lineHeight: 1.6,
+              marginTop: 8,
+              paddingTop: 16,
+              borderTop: "1px solid var(--border)",
+            }}
+          >
+            This guide is general information, not legal or financial advice. Rules on contracts,
+            deposits, warranties, and licensing vary by state and country — verify the specifics
+            with your local licensing board or a qualified professional before relying on them.
+          </p>
         </section>
 
         {/* FAQ */}

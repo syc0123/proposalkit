@@ -10,6 +10,7 @@ import { UpgradeModal } from "@/components/UpgradeModal";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import type { ProposalInput, ProposalOutput, GenerateApiResponse } from "@/types/proposal";
 import { saveProposal, loadProposal } from "@/lib/proposal-storage";
+import { faqSchema } from "@/lib/structured-data";
 
 // @AX:NOTE: [AUTO] sessionStorage key for guest 1-free tracking — cleared on tab close
 const GUEST_USED_KEY = "pk:guest_used";
@@ -51,6 +52,33 @@ const CHIPS = [
   { icon: "💻", label: "Web developers", href: "/for/designers" },
   { icon: "🌿", label: "Landscapers", href: "/for/contractors" },
   { icon: "📋", label: "Accountants", href: "/for/consultants" },
+];
+
+const HOME_FAQ = [
+  {
+    q: "Is ProposalKit free?",
+    a: "Yes. You can generate one proposal with no account at all. Sign in with a free Google account and you get five proposals per calendar month at no cost — no credit card, no trial that converts to a paid plan. A paid Pro tier with unlimited generation is planned but not yet launched.",
+  },
+  {
+    q: "What do I need to enter to generate a proposal?",
+    a: "Three required fields — your client's name, the scope of work, and the budget. You can optionally add your industry, your business name, and a target timeline to make the draft more specific. The whole form takes under a minute, and generation takes about 30 seconds.",
+  },
+  {
+    q: "Can I edit the proposal after it's generated?",
+    a: "Yes. The output opens in an editable view in your browser. You can rewrite any section, adjust the tone, add your own clauses, then copy it as markdown or download it as a PDF. Most people spend five to ten minutes tailoring the draft before sending it.",
+  },
+  {
+    q: "What kinds of businesses is it for?",
+    a: "Solo operators and small teams in service businesses: contractors and trades, freelance designers and developers, consultants, marketing and creative agencies, and other independent professionals. The AI adapts its language and structure to your field rather than producing generic startup-speak.",
+  },
+  {
+    q: "How accurate is the AI output?",
+    a: "Treat every proposal as a strong first draft, not a finished document. AI-generated text can contain errors, outdated figures, or claims that don't fit your jurisdiction, so review and edit it before sending. The drafts are general guidance, not legal, financial, or professional advice.",
+  },
+  {
+    q: "Is my data stored or shared?",
+    a: "Generated proposals are not stored on our servers — the draft is returned to your browser and, for convenience, kept in your browser's local storage for 24 hours. Your form inputs are sent to the Google Gemini API to produce the proposal. See the Privacy Policy for the full detail on what we collect and why.",
+  },
 ];
 
 export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeClientProps) {
@@ -265,6 +293,12 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
                   {error}
                 </p>
               )}
+
+              <p style={{ marginTop: 14, fontSize: 12, color: "var(--ink-500)", lineHeight: 1.6 }}>
+                ProposalKit produces an AI-generated first draft. Review and edit it before sending —
+                AI output can contain errors, and the draft is general guidance, not legal,
+                financial, or professional advice.
+              </p>
             </div>
 
             {/* Result card — always visible; shows skeleton when empty */}
@@ -410,6 +444,32 @@ export function HomeClient({ user, remaining: initialRemaining, isAdmin }: HomeC
                 them so buyers accept without negotiation.
               </p>
             </Link>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="section" id="faq">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                faqSchema(HOME_FAQ.map((f) => ({ question: f.q, answer: f.a })))
+              ),
+            }}
+          />
+          <div className="section-head">
+            <span className="section-kicker">FAQ</span>
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 16px" }}>
+            {HOME_FAQ.map(({ q, a }) => (
+              <div key={q} style={{ marginBottom: 24 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8, color: "var(--ink-900)" }}>
+                  {q}
+                </h3>
+                <p style={{ fontSize: 15, color: "var(--ink-700)", lineHeight: 1.7 }}>{a}</p>
+              </div>
+            ))}
           </div>
         </section>
 
